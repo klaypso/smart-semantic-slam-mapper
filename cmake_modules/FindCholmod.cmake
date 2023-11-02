@@ -10,4 +10,15 @@ find_path(CHOLMOD_INCLUDE_DIR
   cholmod.h
   PATHS
   $ENV{CHOLMODDIR}
-  ${INC
+  ${INCLUDE_INSTALL_DIR}
+  PATH_SUFFIXES
+  suitesparse
+  ufsparse
+)
+
+find_library(CHOLMOD_LIBRARY cholmod PATHS $ENV{CHOLMODDIR} ${LIB_INSTALL_DIR})
+set(CHOLMOD_LIBRARIES ${CHOLMOD_LIBRARY})
+
+if(CHOLMOD_LIBRARIES)
+
+  get_filename
