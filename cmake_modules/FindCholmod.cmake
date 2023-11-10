@@ -78,4 +78,10 @@ if(CHOLMOD_LIBRARIES)
   find_library(SUITESPARSECONFIG_LIBRARY NAMES suitesparseconfig
     PATHS ${CHOLMOD_LIBDIR} $ENV{CHOLMODDIR} ${LIB_INSTALL_DIR})
   if (SUITESPARSECONFIG_LIBRARY)
-    set(CHOLMOD_LIBRARIES ${CHOL
+    set(CHOLMOD_LIBRARIES ${CHOLMOD_LIBRARIES} ${SUITESPARSECONFIG_LIBRARY})
+  endif ()
+endif(CHOLMOD_LIBRARIES)
+
+include(FindPackageHandleStandardArgs)
+find_package_handle_standard_args(CHOLMOD DEFAULT_MSG
+                                
