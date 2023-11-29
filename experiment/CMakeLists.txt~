@@ -1,0 +1,6 @@
+set( build_libs
+    ${OpenCV_LIBS}
+    ${PCL_LIBRARIES}
+    rgbd_tutor_lib
+    motion_lib
+    ${PROJECT_SOURCE_DIR}/Thirdparty/orbslam_modified/lib/li
