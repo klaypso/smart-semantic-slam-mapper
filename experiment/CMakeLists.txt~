@@ -26,4 +26,14 @@ target_link_libraries( run_tracker
 )
 
 add_executable( match_orbfeature_tum match_orbfeature_tum.cpp )
-target_link_libraries( match_orbf
+target_link_libraries( match_orbfeature_tum
+    ${build_libs}
+)
+
+add_executable( slam3d exp_mapping.cpp )
+target_link_libraries( exp_mapping
+    ${build_libs}
+)
+
+add_executable( exp_pose_graph exp_pose_graph.cpp )
+target_link_libr
