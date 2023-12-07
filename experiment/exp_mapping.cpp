@@ -10,4 +10,14 @@
 #include <pcl/point_types.h>
 #include <pcl/common/common_headers.h>
 #include <pcl/visualization/pcl_visualizer.h>
-#include <pcl/visualiza
+#include <pcl/visualization/cloud_viewer.h>
+
+using namespace std;
+using namespace rgbd_tutor;
+
+int main()
+{
+
+    ParameterReader	parameterReader;
+    VisualOdometryStereo::parameters voparam; 
+    double f = parameterReader.get
