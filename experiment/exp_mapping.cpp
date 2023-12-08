@@ -24,4 +24,7 @@ int main()
     double c_u = parameterReader.getData<double>("camera.cx");
     double c_v = parameterReader.getData<double>("camera.cy");
     double base = parameterReader.getData<double>("camera.baseline");
-    
+    double inlier_threshold = parameterReader.getData<double>("inlier_threshold");
+    voparam.calib.f  = f;      voparam.calib.cu = c_u;
+    voparam.calib.cv = c_v;    voparam.base     = base;	
+    voparam.inlier_th
