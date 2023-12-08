@@ -20,4 +20,8 @@ int main()
 
     ParameterReader	parameterReader;
     VisualOdometryStereo::parameters voparam; 
-    double f = parameterReader.get
+    double f = parameterReader.getData<double>("camera.fx");
+    double c_u = parameterReader.getData<double>("camera.cx");
+    double c_v = parameterReader.getData<double>("camera.cy");
+    double base = parameterReader.getData<double>("camera.baseline");
+    
