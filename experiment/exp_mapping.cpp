@@ -31,4 +31,10 @@ int main()
     Tracker::Ptr	tracker( new Tracker(parameterReader, voparam) );
     FrameReader		frameReader( parameterReader );
     PoseGraph		poseGraph( parameterReader, tracker );
-    Mapper  
+    Mapper              mapper( parameterReader, poseGraph );
+
+    while ( RGBDFrame::Ptr frame = frameReader.next() )
+    {
+        cout<<frame->id<<endl;
+        boost::timer timer;
+       
