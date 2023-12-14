@@ -43,4 +43,17 @@ int main()
         tracker->updateFrame( frame );
         poseGraph.tryInsertKeyFrame( frame );
         
-        if (tracker->getState() == T
+        if (tracker->getState() == Tracker::LOST)
+        {
+            cout << "tracker is lost" << endl;
+            //break;
+        }
+    }
+ 
+    // shutdown
+    mapper.SaveMap();
+    poseGraph.shutdown();
+    mapper.shutdown();
+
+    return 0;
+}
