@@ -20,3 +20,39 @@ int main()
 {
 
     ParameterReader	parameterReader;
+    VisualOdometryStereo::parameters voparam; 
+    double f = parameterReader.getData<double>("camera.fx");
+    double c_u = parameterReader.getData<double>("camera.cx");
+    double c_v = parameterReader.getData<double>("camera.cy");
+    double base = parameterReader.getData<double>("camera.baseline");
+    double inlier_threshold = parameterReader.getData<double>("inlier_threshold");
+    voparam.calib.f  = f;      voparam.calib.cu = c_u;
+    voparam.calib.cv = c_v;    voparam.base     = base;	
+    voparam.inlier_threshold = inlier_threshold;
+    Tracker::Ptr	tracker( new Tracker(parameterReader, voparam) );
+    FrameReader		frameReader( parameterReader );
+    PoseGraph		poseGraph( parameterReader, tracker );
+    Mapper              mapper( parameterReader, poseGraph );
+
+    while ( RGBDFrame::Ptr frame = frameReader.next() )
+    {
+        boost::timer timer;
+        cv::imshow("image", frame->rgb);
+        //cv::imshow("depth", frame->depth);
+        cv::waitKey(1);
+        tracker->updateFrame( frame );
+        poseGraph.tryInsertKeyFrame( frame );
+        
+        if (tracker->getState() == Tracker::LOST)
+        {
+            cout << "tracker is lost" << endl;
+            //break;
+        }
+    }
+ 
+    // shutdown
+    poseGraph.shutdown();
+    mapper.shutdown();
+
+    return 0;
+}
