@@ -25,4 +25,8 @@ int main()
 
     while( RGBDFrame::Ptr frame = frameReader.next() )
     {
-        cout<<"****************************
+        cout<<"*******************************************"<<endl;
+        boost::timer timer;
+        cout<<"loading frame "<<frame->id<<endl;
+        Eigen::Isometry3d T = tracker->updateFrame( frame );
+        cout<<"current frame T = "
