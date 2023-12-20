@@ -29,4 +29,9 @@ int main()
         boost::timer timer;
         cout<<"loading frame "<<frame->id<<endl;
         Eigen::Isometry3d T = tracker->updateFrame( frame );
-        cout<<"current frame T = "
+        cout<<"current frame T = "<<endl<<T.matrix()<<endl;
+        cv::imshow( "image", frame->rgb );
+        if ( poseGraph.tryInsertKeyFrame( frame ) == true )
+        {
+            cout<<"Insert key-frame succeed"<<endl;
+            cv::wai
