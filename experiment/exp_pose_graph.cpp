@@ -44,4 +44,6 @@ int main()
         cout<<GREEN<<"time cost="<<timer.elapsed()<<RESET<<endl;
     }
 
-    poseGraph.shu
+    poseGraph.shutdown();
+    return 0;
+}
