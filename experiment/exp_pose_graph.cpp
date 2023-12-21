@@ -34,4 +34,14 @@ int main()
         if ( poseGraph.tryInsertKeyFrame( frame ) == true )
         {
             cout<<"Insert key-frame succeed"<<endl;
-            cv::wai
+            cv::waitKey(1);
+        }
+        else
+        {
+            cout<<"Insert key-frame failed"<<endl;
+            cv::waitKey(1);
+        }
+        cout<<GREEN<<"time cost="<<timer.elapsed()<<RESET<<endl;
+    }
+
+    poseGraph.shu
