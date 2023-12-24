@@ -16,4 +16,9 @@ int main()
     cout<<"running orbfeature_tum"<<endl;
     ParameterReader para;
     FrameReader frameReader( para );
-    
+    OrbFeature  orb( para );
+    RGBDFrame::Ptr last_frame = frameReader.next();
+    while ( RGBDFrame::Ptr frame = frameReader.next() )
+    {
+        boost::timer    timer;
+        orb.detectFeatures( 
