@@ -21,4 +21,8 @@ int main()
     while ( RGBDFrame::Ptr frame = frameReader.next() )
     {
         boost::timer    timer;
-        orb.detectFeatures( 
+        orb.detectFeatures( frame );
+        vector<cv::DMatch>  matches = orb.match( last_frame, frame );
+        cout<<"matches = "<<matches.size()<<endl;
+        cout<<"timer used for detecting and matching features"<<timer.elapsed()<<endl;
+        last_fr
