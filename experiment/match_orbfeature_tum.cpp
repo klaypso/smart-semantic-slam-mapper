@@ -25,4 +25,7 @@ int main()
         vector<cv::DMatch>  matches = orb.match( last_frame, frame );
         cout<<"matches = "<<matches.size()<<endl;
         cout<<"timer used for detecting and matching features"<<timer.elapsed()<<endl;
-        last_fr
+        last_frame = frame;
+    }
+    return 0;
+}
