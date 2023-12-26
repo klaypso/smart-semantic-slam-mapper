@@ -12,4 +12,14 @@
 #include <opencv2/core/core.hpp>
 
 using namespace std;
-using namespace
+using namespace rgbd_tutor;
+using namespace cv;
+int main()
+{
+    ParameterReader para;
+    FrameReader frameReader( para );
+    OrbFeature  orb(para);
+
+
+    RGBDFrame::Ptr refFrame = frameReader.next();
+   
