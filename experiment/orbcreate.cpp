@@ -22,4 +22,10 @@ int main()
 
 
     RGBDFrame::Ptr refFrame = frameReader.next();
-   
+    orb.detectFeatures( refFrame );
+    Eigen::Isometry3d   speed = Eigen::Isometry3d::Identity();
+
+    while (1)
+    {
+        cout<<"*************************************"<<endl;
+        RGBDFrame::Ptr currFrame = fra
