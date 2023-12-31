@@ -28,4 +28,10 @@ int main()
     while (1)
     {
         cout<<"*************************************"<<endl;
-        RGBDFrame::Ptr currFrame = fra
+        RGBDFrame::Ptr currFrame = frameReader.next();
+
+        std::vector<KeyPoint> keypoint1,keypoint2;
+        Mat descriptors_1,descriptors_2;
+        Ptr<ORB> orb ;//= ORB::create(500,1.2f,8,31,0,2,ORB::HARRIS_SCORE,31,20);
+
+        orb->detect(re
