@@ -34,4 +34,9 @@ int main()
         Mat descriptors_1,descriptors_2;
         Ptr<ORB> orb ;//= ORB::create(500,1.2f,8,31,0,2,ORB::HARRIS_SCORE,31,20);
 
-        orb->detect(re
+        orb->detect(refFrame->img_lc,keypoint1);
+        orb->detect(currFrame->img_lc,keypoint2);
+        orb->compute(refFrame->img_lc,keypoint1,descriptors_1);
+        orb->compute(currFrame->img_lc,keypoint2,descriptors_2);
+
+        Mat ou
