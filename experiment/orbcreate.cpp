@@ -39,4 +39,13 @@ int main()
         orb->compute(refFrame->img_lc,keypoint1,descriptors_1);
         orb->compute(currFrame->img_lc,keypoint2,descriptors_2);
 
-        Mat ou
+        Mat outimg2;
+        drawKeypoints(refFrame->img_lc,keypoint1,outimg2,Scalar::all(-1),DrawMatchesFlags::DEFAULT);
+        imshow("ORB",outimg2);
+
+        cv::waitKey(3);
+    }
+
+    return 0;
+}
+
