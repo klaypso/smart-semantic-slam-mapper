@@ -52,3 +52,28 @@ int main()
             cout<<"result.T="<<endl;
             cout<<info.T.matrix()<<endl;
             cout<<"current = "<< endl << currFrame->T_f_w.matrix() << endl;
+            speed = info.T;
+            refFrame = currFrame;
+            cv::waitKey(2);
+        }
+
+        cout<<GREEN<<"time used = "<<timer.elapsed()<<RESET<<endl;
+
+	int x = -currFrame->T_f_w(0,3);
+	int y = -currFrame->T_f_w(2,3);
+	cout << "x: " << x << " y: " << y << endl;
+
+	// gt_pose
+	n += 1;
+	cv::Mat gtpose;
+	poseReader.getData(n+1, gtpose);
+
+	cv::circle(poseMap, cv::Point(poseMap.cols/2+x, poseMap.rows/2-y), 2, cv::Scalar(255,0,0));  
+	cv::circle(poseMap, cv::Point(poseMap.cols/2+gtpose.ptr<double>(0)[3], poseMap.rows/2-gtpose.ptr<double>(2)[3]), 2, cv::Scalar(0,0,255));  
+	cv::namedWindow("pose", 0);
+	cv::imshow("pose", poseMap);
+	cv::waitKey(3);
+    }
+
+    return 0;
+}
