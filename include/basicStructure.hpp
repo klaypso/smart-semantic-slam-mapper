@@ -12,4 +12,17 @@
 using namespace std;
 
 //Region of interest in 3D. (usually, we chose a 30X30 meteres wide area with 1m higher than the vision system )
-struc
+struct ROI3D
+{
+  ROI3D():x_max(30000),y_max(-1000),z_max(30000){};
+
+  ROI3D(double x, double y, double z)
+    {
+      x_max = x;
+      y_max = y;
+      z_max = z;
+      
+    };
+
+  inline ROI3D& operator=(const ROI3D &t)
+    {
