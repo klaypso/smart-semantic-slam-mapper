@@ -48,4 +48,14 @@ struct CalibPars
     {
         f = _f;
         c_x = _cx;
-  
+        c_y = _cy;
+        b = _base;
+     };
+
+    CalibPars(const cv::Mat& Q)
+    {
+      int type = Q.elemSize1();
+      if(type == 8)
+      {
+        f = Q.at<double>(2,3);
+        c_x = (-1.0)*Q.at<double>(0,3)
