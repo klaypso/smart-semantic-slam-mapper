@@ -26,3 +26,17 @@ struct ROI3D
 
   inline ROI3D& operator=(const ROI3D &t)
     {
+      x_max = t.x_max;
+      y_max = t.y_max;
+      z_max = t.z_max;
+      return *this;
+    };
+  
+  double x_max;
+  double y_max;//is negtive always
+  double z_max;
+};
+
+
+//stereo calibration parameters
+struct Ca
