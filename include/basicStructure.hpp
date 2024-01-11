@@ -39,4 +39,13 @@ struct ROI3D
 
 
 //stereo calibration parameters
-struct Ca
+struct CalibPars
+{ 
+
+    CalibPars():f(0.0),c_x(0.0),c_y(0.0),b(0.0){};
+
+    CalibPars(const double _f, const double _cx, const double _cy, const double _base)
+    {
+        f = _f;
+        c_x = _cx;
+  
