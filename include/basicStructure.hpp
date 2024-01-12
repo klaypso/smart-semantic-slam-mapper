@@ -58,4 +58,17 @@ struct CalibPars
       if(type == 8)
       {
         f = Q.at<double>(2,3);
-        c_x = (-1.0)*Q.at<double>(0,3)
+        c_x = (-1.0)*Q.at<double>(0,3);
+        c_y = (-1.0)*Q.at<double>(1,3);
+        b = (-1.0)/Q.at<double>(3,2);
+      }
+      else
+      {
+        cout<<"Only double type matrix is allowed!"<<endl;
+      }
+             
+    };
+
+
+
+    inline friend ostream &operator <<(ostream 
