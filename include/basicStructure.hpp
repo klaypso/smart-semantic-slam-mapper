@@ -77,4 +77,17 @@ struct CalibPars
       return s;
     };
 
-    inline CalibPars& op
+    inline CalibPars& operator=(const CalibPars &t)
+    {
+      f = t.f;
+      c_x = t.c_x;
+      c_y = t.c_y;
+      b = t.b;
+      return *this;
+    };
+
+
+    double f;      //focal length
+    double c_x;    //principle position in x,y
+    double c_y;
+    double b; 
