@@ -71,4 +71,10 @@ struct CalibPars
 
 
 
-    inline friend ostream &operator <<(ostream 
+    inline friend ostream &operator <<(ostream &s, CalibPars calib)
+    {
+      s<<"Focal length f: "<<calib.f<<" c_x, c_y: "<<calib.c_x<<" "<<calib.c_y<<" base length: "<<calib.b<<endl;
+      return s;
+    };
+
+    inline CalibPars& op
