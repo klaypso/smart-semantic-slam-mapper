@@ -90,4 +90,8 @@ struct CalibPars
     double f;      //focal length
     double c_x;    //principle position in x,y
     double c_y;
-    double b; 
+    double b;      //base line in mm
+};
+
+
+#endif
