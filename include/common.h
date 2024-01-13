@@ -11,3 +11,15 @@
 #include <iostream>
 #include <fstream>
 #include <vector>
+#include <map>
+#include <string>
+using namespace std;
+
+
+// Eigen
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+
+// OpenCV
+#include <opencv2/core/core.hpp>
+#include <opencv2/highgui/highgui.h
