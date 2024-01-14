@@ -53,4 +53,8 @@ struct CAMERA_INTRINSIC_PARAMETERS
 #define YELLOW "\033[33m" /* Yellow */
 #define BLUE "\033[34m" /* Blue */
 #define MAGENTA "\033[35m" /* Magenta */
-#define 
+#define CYAN "\033[36m" /* Cyan */
+#define WHITE "\033[37m" /* White */
+#define BOLDBLACK "\033[1m\033[30m" /* Bold Black */
+#define BOLDRED "\033[1m\033[31m" /* Bold Red */
+#define
