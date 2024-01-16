@@ -22,4 +22,10 @@ public:
              T(2,0) << T(2,1) << T(2,2);*/
         Eigen::Vector3d t( T(0,3), T(1,3), T(2,3) );
 
-        return 
+        return g2o::SE3Quat( R, t );
+    };
+
+    static  cv::Mat     toCvCameraMatrix( const rgbd_tutor::CAMERA_INTRINSIC_PARAMETERS& camera )
+    {
+        double camera_matrix_data[3][3] = {
+            {camera.fx, 0, camera.cx},
