@@ -29,3 +29,11 @@ public:
     {
         double camera_matrix_data[3][3] = {
             {camera.fx, 0, camera.cx},
+            {0, camera.fy, camera.cy},
+            {0, 0, 1}
+        };
+        return cv::Mat( 3, 3, CV_64F, camera_matrix_data );
+    }
+
+    // 将cv的平移向量和旋转矩阵转换成变换矩阵
+    static  Eigen::Isometry3d   cvR
