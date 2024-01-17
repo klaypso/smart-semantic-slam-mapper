@@ -36,4 +36,12 @@ public:
     }
 
     // 将cv的平移向量和旋转矩阵转换成变换矩阵
-    static  Eigen::Isometry3d   cvR
+    static  Eigen::Isometry3d   cvRT2EigenIsometry( const cv::Mat& rvec, const cv::Mat& tvec )
+    {
+        cv::Mat R;
+        cv::Rodrigues( rvec, R );
+        Eigen::Matrix3d r;
+        cv::cv2eigen(R, r);
+
+
+        Eigen::Isometry3d T = Eigen::Isometry3d::Ide
