@@ -44,4 +44,18 @@ public:
         cv::cv2eigen(R, r);
 
 
-        Eigen::Isometry3d T = Eigen::Isometry3d::Ide
+        Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+        Eigen::AngleAxisd angle(r);
+        T = angle;
+        T(0,3) = tvec.at<double>(0,0);
+        T(1,3) = tvec.at<double>(0,1);
+        T(2,3) = tvec.at<double>(0,2);
+        return T;
+    }
+
+
+};
+
+};
+
+#e
