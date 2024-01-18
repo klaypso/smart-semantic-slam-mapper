@@ -13,4 +13,15 @@
 #include <opencv2/opencv.hpp>
 
 #include "Thirdparty/DBoW2/DBoW2/FORB.h"
-#inc
+#include "Thirdparty/DBoW2/DBoW2/TemplatedVocabulary.h"
+
+namespace rgbd_tutor
+{
+using namespace rgbd_tutor;
+
+class Looper
+{
+public:
+
+    Looper( const ParameterReader& para )
+        : parameter
