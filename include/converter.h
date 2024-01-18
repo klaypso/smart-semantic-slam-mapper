@@ -58,4 +58,4 @@ public:
 
 };
 
-#e
+#endif // MY_CONVERTER_H
