@@ -24,4 +24,8 @@ class Looper
 public:
 
     Looper( const ParameterReader& para )
-        : parameter
+        : parameterReader( para )
+    {
+        string  vocab_file = para.getData<string>("looper_vocab_file");
+        cout<<"loading vocabulary file, this may take a while..."<<endl;
+        vocab.loadFromTextFile( voca
