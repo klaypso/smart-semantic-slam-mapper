@@ -41,4 +41,16 @@ public:
         vector<cv::Mat> desps = frame->getAllDescriptorsVec();
         DBoW2::FeatureVector featVec;
         vocab.transform( desps, frame->bowVec, featVec, 4);
-        frames.push_back( fra
+        frames.push_back( frame );
+    }
+
+    // 获取可能的loops
+    vector<RGBDFrame::Ptr> getPossibleLoops( const RGBDFrame::Ptr& frame );
+
+
+    // TODO
+    void save() {}
+    void load() {}
+protected:
+
+    DBoW2::TemplatedVocabulary<DBoW2:
