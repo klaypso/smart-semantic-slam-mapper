@@ -28,4 +28,12 @@ public:
     {
         string  vocab_file = para.getData<string>("looper_vocab_file");
         cout<<"loading vocabulary file, this may take a while..."<<endl;
-        vocab.loadFromTextFile( voca
+        vocab.loadFromTextFile( vocab_file );
+        cout<<"load ok."<<endl;
+
+        min_sim_score = para.getData<float>("looper_min_sim_score");
+        min_interval = para.getData<int>("looper_min_interval");
+    }
+
+    // 往数据库里增加一条frame记录
+    void add( RGBDFrame::Ptr
