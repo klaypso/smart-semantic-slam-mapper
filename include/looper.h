@@ -36,4 +36,9 @@ public:
     }
 
     // 往数据库里增加一条frame记录
-    void add( RGBDFrame::Ptr
+    void add( RGBDFrame::Ptr& frame )
+    {
+        vector<cv::Mat> desps = frame->getAllDescriptorsVec();
+        DBoW2::FeatureVector featVec;
+        vocab.transform( desps, frame->bowVec, featVec, 4);
+        frames.push_back( fra
