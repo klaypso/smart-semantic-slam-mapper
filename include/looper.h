@@ -53,4 +53,11 @@ public:
     void load() {}
 protected:
 
-    DBoW2::TemplatedVocabulary<DBoW2:
+    DBoW2::TemplatedVocabulary<DBoW2::FORB::TDescriptor, DBoW2::FORB>    vocab;     //字典文件
+    vector<RGBDFrame::Ptr>      frames;
+    const ParameterReader&      parameterReader;
+    float   min_sim_score   =0.01;
+    float   min_interval    =10;
+};
+
+}
