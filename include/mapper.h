@@ -10,4 +10,13 @@
 
 namespace rgbd_tutor
 {
-using namespace rgbd_
+using namespace rgbd_tutor;
+
+class Mapper
+{
+public:
+    typedef pcl::PointXYZRGBA PointT;
+    typedef pcl::PointCloud<PointT> PointCloud;
+
+    Mapper( const ParameterReader& para, PoseGraph& graph )
+        : parame
