@@ -19,4 +19,8 @@ public:
     typedef pcl::PointCloud<PointT> PointCloud;
 
     Mapper( const ParameterReader& para, PoseGraph& graph )
-        : parame
+        : parameterReader( para ), poseGraph( graph )
+    {
+	    resolution = para.getData<double>("mapper_resolution");
+        max_distance = para.getData<double>("mapper_max_distance");
+        viewerThread = std::mak
