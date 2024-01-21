@@ -23,4 +23,7 @@ public:
     {
 	    resolution = para.getData<double>("mapper_resolution");
         max_distance = para.getData<double>("mapper_max_distance");
-        viewerThread = std::mak
+        viewerThread = std::make_shared<std::thread> ( std::bind( &Mapper::viewer, this ));
+
+	    area_thres = para.getData<int>("motion_area_thres");
+        overlay_portion_thres = para.getData<double>("motion_overl
