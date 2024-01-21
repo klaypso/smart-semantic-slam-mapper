@@ -26,4 +26,19 @@ public:
         viewerThread = std::make_shared<std::thread> ( std::bind( &Mapper::viewer, this ));
 
 	    area_thres = para.getData<int>("motion_area_thres");
-        overlay_portion_thres = para.getData<double>("motion_overl
+        overlay_portion_thres = para.getData<double>("motion_overlay_portion_thres");
+    }
+
+    void shutdown()
+    {
+        shutdownFlag = true;
+        if (viewerThread != nullptr)
+	    {
+        	viewerThread->join();
+	    }
+    }
+
+    // viewer线程
+    void viewer();
+
+    void SaveMap()
