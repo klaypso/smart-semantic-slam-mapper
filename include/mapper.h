@@ -41,4 +41,13 @@ public:
     // viewer线程
     void viewer();
 
-    void SaveMap()
+    void SaveMap();
+
+
+protected:
+    PointCloud::Ptr generatePointCloud( const RGBDFrame::Ptr &frame );
+
+    // viewer thread
+    std::shared_ptr<std::thread>	viewerThread = nullptr;
+    const ParameterReader& parameterReader;
+ 
