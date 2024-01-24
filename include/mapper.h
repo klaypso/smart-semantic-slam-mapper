@@ -50,4 +50,13 @@ protected:
     // viewer thread
     std::shared_ptr<std::thread>	viewerThread = nullptr;
     const ParameterReader& parameterReader;
- 
+    PoseGraph&  poseGraph;
+
+    int    keyframe_size    = 0;
+    double resolution       = 0.8;
+    double max_distance     = 8.0;
+    bool   shutdownFlag	    = false;
+
+
+    // motion
+    int area_thres = 1
