@@ -59,4 +59,18 @@ protected:
 
 
     // motion
-    int area_thres = 1
+    int area_thres = 1000;
+    double overlay_portion_thres = 0.143;
+    cv::Mat moving_mask;
+
+    void semantic_motion_fuse( const RGBDFrame::Ptr &frame);
+
+    //PointCloud::Ptr globalMap;
+
+};
+
+
+}
+
+
+#endif // MAPPER_H
