@@ -16,4 +16,18 @@ PARTICULAR PURPOSE. See the GNU General Public License for more details.
 
 You should have received a copy of the GNU General Public License along with
 libviso2; if not, write to the Free Software Foundation, Inc., 51 Franklin
-Street, Fifth Floor, Bos
+Street, Fifth Floor, Boston, MA 02110-1301, USA 
+*/
+
+#ifndef Matrix__H
+#define Matrix__H
+
+#include <cstdio>
+#include <cstring>
+#include <cstdlib>
+#include <iostream>
+#include <vector>
+
+#ifndef _MSC_VER
+  #include <stdint.h>
+#else
