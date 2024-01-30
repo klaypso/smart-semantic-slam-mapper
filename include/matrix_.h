@@ -51,4 +51,6 @@ class Matrix_ {
 public:
 
   // constructor / deconstructor
-  Matrix_ ();                                                  
+  Matrix_ ();                                                  // init empty 0x0 Matrix_
+  Matrix_ (const int32_t m,const int32_t n);                   // init empty mxn Matrix_
+  Matrix_ (const int32_t m,const int32_t n,const FLOAT* val_); // init mxn Matrix_ with values from array
