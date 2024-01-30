@@ -43,4 +43,12 @@ Street, Fifth Floor, Boston, MA 02110-1301, USA
 
 #define endll endl << endl // double end line definition
 
-typedef double FLOAT;      //
+typedef double FLOAT;      // double precision
+//typedef float  FLOAT;    // single precision
+
+class Matrix_ {
+
+public:
+
+  // constructor / deconstructor
+  Matrix_ ();                                                  
