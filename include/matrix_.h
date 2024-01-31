@@ -53,4 +53,11 @@ public:
   // constructor / deconstructor
   Matrix_ ();                                                  // init empty 0x0 Matrix_
   Matrix_ (const int32_t m,const int32_t n);                   // init empty mxn Matrix_
-  Matrix_ (const int32_t m,const int32_t n,const FLOAT* val_); // init mxn Matrix_ with values from array
+  Matrix_ (const int32_t m,const int32_t n,const FLOAT* val_); // init mxn Matrix_ with values from array 'val'
+  Matrix_ (const Matrix_ &M);                                   // creates deepcopy of M
+  ~Matrix_ ();
+
+  // assignment operator, copies contents of M
+  Matrix_& operator= (const Matrix_ &M);
+
+  // copies submatr
