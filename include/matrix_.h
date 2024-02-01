@@ -60,4 +60,8 @@ public:
   // assignment operator, copies contents of M
   Matrix_& operator= (const Matrix_ &M);
 
-  // copies submatr
+  // copies submatrix of M into array 'val', default values copy whole row/column/Matrix_
+  void getData(FLOAT* val_,int32_t i1=0,int32_t j1=0,int32_t i2=-1,int32_t j2=-1);
+
+  // set or get submatrices of current Matrix_
+  M
