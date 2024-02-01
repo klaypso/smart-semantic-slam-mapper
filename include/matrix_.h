@@ -64,4 +64,7 @@ public:
   void getData(FLOAT* val_,int32_t i1=0,int32_t j1=0,int32_t i2=-1,int32_t j2=-1);
 
   // set or get submatrices of current Matrix_
-  M
+  Matrix_ getMat(int32_t i1,int32_t j1,int32_t i2=-1,int32_t j2=-1);
+  void   setMat(const Matrix_ &M,const int32_t i,const int32_t j);
+
+  // set sub-Matrix_ to scalar (default 0), -1 as end replaces whole r
