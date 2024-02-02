@@ -87,4 +87,8 @@ public:
   static Matrix_ diag(const Matrix_ &M);
   
   // returns the m-by-n Matrix_ whose elements are taken column-wise from M
-  static Mat
+  static Matrix_ reshape(const Matrix_ &M,int32_t m,int32_t n);
+
+  // create 3x3 rotation matrices (convention: http://en.wikipedia.org/wiki/Rotation_Matrix_)
+  static Matrix_ rotMatX(const FLOAT &angle);
+  static Matrix_ rotMat
