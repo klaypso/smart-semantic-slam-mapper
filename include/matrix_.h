@@ -81,4 +81,10 @@ public:
 
   // create identity Matrix_
   static Matrix_ eye (const int32_t m);
-  void
+  void          eye ();
+
+  // create diagonal Matrix_ with nx1 or 1xn Matrix_ M as elements
+  static Matrix_ diag(const Matrix_ &M);
+  
+  // returns the m-by-n Matrix_ whose elements are taken column-wise from M
+  static Mat
