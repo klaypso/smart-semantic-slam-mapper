@@ -71,4 +71,14 @@ public:
   void setVal(FLOAT s,int32_t i1=0,int32_t j1=0,int32_t i2=-1,int32_t j2=-1);
 
   // set (part of) diagonal to scalar, -1 as end replaces whole diagonal
-  void setDiag(FLOAT s,int32_t 
+  void setDiag(FLOAT s,int32_t i1=0,int32_t i2=-1);
+
+  // clear Matrix_
+  void zero();
+  
+  // extract columns with given index
+  Matrix_ extractCols (std::vector<int> idx);
+
+  // create identity Matrix_
+  static Matrix_ eye (const int32_t m);
+  void
