@@ -91,4 +91,10 @@ public:
 
   // create 3x3 rotation matrices (convention: http://en.wikipedia.org/wiki/Rotation_Matrix_)
   static Matrix_ rotMatX(const FLOAT &angle);
-  static Matrix_ rotMat
+  static Matrix_ rotMatY(const FLOAT &angle);
+  static Matrix_ rotMatZ(const FLOAT &angle);
+
+  // simple arithmetic operations
+  Matrix_  operator+ (const Matrix_ &M); // add Matrix_
+  Matrix_  operator- (const Matrix_ &M); // subtract Matrix_
+ 
