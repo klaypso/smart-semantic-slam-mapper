@@ -107,4 +107,6 @@ public:
   FLOAT   mean ();                     // mean of all elements in Matrix_
 
   // complex arithmetic operations
-  static Matrix_ cro
+  static Matrix_ cross (const Matrix_ &a, const Matrix_ &b);    // cross product of two vectors
+  static Matrix_ inv (const Matrix_ &M);                       // invert Matrix_ M
+  bool   inv ();                                        
