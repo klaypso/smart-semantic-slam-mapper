@@ -99,4 +99,8 @@ public:
   Matrix_  operator- (const Matrix_ &M); // subtract Matrix_
   Matrix_  operator* (const Matrix_ &M); // multiply with Matrix_
   Matrix_  operator* (const FLOAT &s);  // multiply with scalar
-  Matrix_  operator/ (const Matrix_ &M); // divide elementwise by Matri
+  Matrix_  operator/ (const Matrix_ &M); // divide elementwise by Matrix_ (or vector)
+  Matrix_  operator/ (const FLOAT &s);  // divide by scalar
+  Matrix_  operator- ();                // negative Matrix_
+  Matrix_  operator~ ();                // transpose
+  FLOAT   l2norm
