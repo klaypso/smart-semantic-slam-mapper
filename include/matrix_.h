@@ -103,4 +103,8 @@ public:
   Matrix_  operator/ (const FLOAT &s);  // divide by scalar
   Matrix_  operator- ();                // negative Matrix_
   Matrix_  operator~ ();                // transpose
-  FLOAT   l2norm
+  FLOAT   l2norm ();                   // euclidean norm (vectors) / frobenius norm (matrices)
+  FLOAT   mean ();                     // mean of all elements in Matrix_
+
+  // complex arithmetic operations
+  static Matrix_ cro
