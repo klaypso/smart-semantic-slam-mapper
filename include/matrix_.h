@@ -109,4 +109,6 @@ public:
   // complex arithmetic operations
   static Matrix_ cross (const Matrix_ &a, const Matrix_ &b);    // cross product of two vectors
   static Matrix_ inv (const Matrix_ &M);                       // invert Matrix_ M
-  bool   inv ();                                        
+  bool   inv ();                                             // invert this Matrix_
+  FLOAT  det ();                                             // returns determinant of Matrix_
+  bool   solve (const Matrix_ &M,FLOAT eps=1e-20);            // solve linear system M*x=B, replace
