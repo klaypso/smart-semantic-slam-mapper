@@ -111,4 +111,6 @@ public:
   static Matrix_ inv (const Matrix_ &M);                       // invert Matrix_ M
   bool   inv ();                                             // invert this Matrix_
   FLOAT  det ();                                             // returns determinant of Matrix_
-  bool   solve (const Matrix_ &M,FLOAT eps=1e-20);            // solve linear system M*x=B, replace
+  bool   solve (const Matrix_ &M,FLOAT eps=1e-20);            // solve linear system M*x=B, replaces *this and M
+  bool   lu(int32_t *idx, FLOAT &d, FLOAT eps=1e-20);        // replace *this by lower upper decomposition
+  void   svd(Matrix_ &U,Matrix_ &W,Matrix_ &V);                 // 
