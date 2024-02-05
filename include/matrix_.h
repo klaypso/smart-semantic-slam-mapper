@@ -120,4 +120,14 @@ public:
 
   // direct data access
   FLOAT   **val;
-  int32
+  int32_t   m,n;
+
+private:
+
+  void allocateMemory (const int32_t m_,const int32_t n_);
+  void releaseMemory ();
+  inline FLOAT pythag(FLOAT a,FLOAT b);
+
+};
+
+#endif // Matrix__H
