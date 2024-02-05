@@ -113,4 +113,11 @@ public:
   FLOAT  det ();                                             // returns determinant of Matrix_
   bool   solve (const Matrix_ &M,FLOAT eps=1e-20);            // solve linear system M*x=B, replaces *this and M
   bool   lu(int32_t *idx, FLOAT &d, FLOAT eps=1e-20);        // replace *this by lower upper decomposition
-  void   svd(Matrix_ &U,Matrix_ &W,Matrix_ &V);                 // 
+  void   svd(Matrix_ &U,Matrix_ &W,Matrix_ &V);                 // singular value decomposition *this = U*diag(W)*V^T
+
+  // print Matrix_ to stream
+  friend std::ostream& operator<< (std::ostream& out,const Matrix_& M);
+
+  // direct data access
+  FLOAT   **val;
+  int32
