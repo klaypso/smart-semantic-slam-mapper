@@ -14,3 +14,10 @@ namespace rgbd_tutor
 {
 
 class OrbFeature
+{
+public:
+    OrbFeature( const rgbd_tutor::ParameterReader& para )
+    {
+        int features  = para.getData<int>("orb_features");
+        float   scale = para.getData<float>("orb_scale");
+        int     level = para.getData
