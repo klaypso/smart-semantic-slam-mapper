@@ -20,4 +20,7 @@ public:
     {
         int features  = para.getData<int>("orb_features");
         float   scale = para.getData<float>("orb_scale");
-        int     level = para.getData
+        int     level = para.getData<int>("orb_levels");
+        int     ini   = para.getData<int>("orb_iniThFAST");
+        int     min   = para.getData<int>("orb_minThFAST");
+        extractor = make_shared<ORB_SLAM2::ORBextr
