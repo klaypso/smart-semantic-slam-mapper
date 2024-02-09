@@ -15,4 +15,12 @@ public:
         if (!fin)
         {
             // try ../parameter.txt
-            fin.open("../para
+            fin.open("../parameters.txt");
+            if (!fin)
+            {
+                cerr<<"parameter file does not exist."<<endl;
+                return;
+            }
+        }
+        while(!fin.eof())
+      
