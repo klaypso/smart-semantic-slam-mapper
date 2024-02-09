@@ -9,4 +9,10 @@ struct CAMERA_INTRINSIC_PARAMETERS;
 class ParameterReader
 {
 public:
-    ParameterReader( s
+    ParameterReader( string filename="./parameters.txt" )
+    {
+        ifstream fin( filename.c_str() );
+        if (!fin)
+        {
+            // try ../parameter.txt
+            fin.open("../para
