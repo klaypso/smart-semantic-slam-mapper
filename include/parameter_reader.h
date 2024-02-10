@@ -23,4 +23,12 @@ public:
             }
         }
         while(!fin.eof())
-      
+        {
+            string str;
+            getline( fin, str );
+            if (str[0] == '#')
+            {
+                // 以‘＃’开头的是注释
+                continue;
+            }
+            int pos
