@@ -40,4 +40,13 @@ public:
             pos = str.find("=");
             if (pos == -1)
                 continue;
-            string
+            string key = str.substr( 0, pos );
+            string value = str.substr( pos+1, str.length() );
+            data[key] = value;
+
+            if ( !fin.good() )
+                break;
+        }
+    }
+
+    template
