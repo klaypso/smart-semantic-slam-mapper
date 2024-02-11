@@ -31,4 +31,13 @@ public:
                 // 以‘＃’开头的是注释
                 continue;
             }
-            int pos
+            int pos = str.find('#');
+            if (pos != -1)
+            {
+                //从井号到末尾的都是注释
+                str = str.substr(0, pos);
+            }
+            pos = str.find("=");
+            if (pos == -1)
+                continue;
+            string
