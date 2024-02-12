@@ -49,4 +49,12 @@ public:
         }
     }
 
-    template
+    template< class T >
+    T getData( const string& key ) const
+    {
+        auto iter = data.find(key);
+        if (iter == data.end())
+        {
+            cerr<<"Parameter name "<<key<<" not found!"<<endl;
+        }
+   
