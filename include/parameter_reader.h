@@ -67,4 +67,4 @@ public:
 };
 
 };
-#endif // PARAMETER_READE
+#endif // PARAMETER_READER_H
