@@ -57,4 +57,14 @@ public:
         {
             cerr<<"Parameter name "<<key<<" not found!"<<endl;
         }
-   
+        return boost::lexical_cast<T>( iter->second );
+    }
+
+    rgbd_tutor::CAMERA_INTRINSIC_PARAMETERS getCamera() const;
+
+public:
+    map<string, string> data;
+};
+
+};
+#endif // PARAMETER_READE
