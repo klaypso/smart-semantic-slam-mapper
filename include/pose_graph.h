@@ -29,4 +29,12 @@ namespace rgbd_tutor
 {
 using namespace rgbd_tutor;
 
-class
+class Tracker;
+
+class PoseGraph
+{
+public:
+    PoseGraph( const ParameterReader& para, shared_ptr<Tracker>& t ) : parameterReader( para ), tracker( t )
+    {
+        looper  =   make_shared<Looper>( para );
+        or
