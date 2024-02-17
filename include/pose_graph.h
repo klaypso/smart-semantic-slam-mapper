@@ -68,4 +68,13 @@ public:
     bool    tryInsertKeyFrame( RGBDFrame::Ptr& frame );
 
     //主线程
-    void    
+    void    mainLoop();
+
+    void    shutdown()
+    {
+        shutDownFlag = true;
+        keyframe_updated.notify_all();
+        cout<<"please wait pose graph thread to stop..."<<endl;
+        if (posegraphThread != nullptr)
+        {
+   
