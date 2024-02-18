@@ -90,4 +90,14 @@ public:
         if ( optimizer.vertices().size() > 5)
         {
             // 太少了就不优化了
-            optimizer.in
+            optimizer.initializeOptimization();
+            optimizer.optimize( 10 );
+        }
+    }
+
+    void save( const string& filename )
+    {
+        ofstream fout(filename);
+        /*
+        for ( size_t i=0; i< keyframes.size(); i++ )
+       
