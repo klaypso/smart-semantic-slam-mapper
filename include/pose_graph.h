@@ -77,4 +77,10 @@ public:
         cout<<"please wait pose graph thread to stop..."<<endl;
         if (posegraphThread != nullptr)
         {
-   
+            posegraphThread->join();
+        }
+
+        // save the results
+        cout<<RED<<"saving trajectory"<<endl;
+        cout<<"vertex: "<<optimizer.vertices().size()<<endl;
+        cout<<"edge
