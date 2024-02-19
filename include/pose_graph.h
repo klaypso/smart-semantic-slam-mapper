@@ -129,4 +129,13 @@ public:
         if (fout)
         {
             optimizer.save(filename.c_str());
-    
+            fout.close();
+        }
+    }
+
+protected:
+    //  检测限定端点的边是否存在
+    bool    isEdgeExist( const int vertex1, const int vertex2 ) const
+    {
+        if ( vertex1==vertex2 )
+            return tru
