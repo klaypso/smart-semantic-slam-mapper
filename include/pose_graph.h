@@ -109,4 +109,12 @@ public:
             }
             double data[7] = {0};
             v->getEstimateData( data );
-            fout<<"VERTEX_SE3:QUAT 
+            fout<<"VERTEX_SE3:QUAT "<<v->id()<<" ";
+            for ( double d:data )
+                fout<<d<<" ";
+            fout<<endl;
+        }
+
+        for ( size_t i=0; i<edges.size(); i++ )
+        {
+            g2o::EdgeSE3 edge = *edges[
