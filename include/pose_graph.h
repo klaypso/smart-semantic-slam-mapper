@@ -146,3 +146,10 @@ protected:
     }
 
 public:
+    //数据
+    vector<RGBDFrame::Ptr>  keyframes;
+    vector<RGBDFrame::Ptr>  newFrames;      //新关键帧的缓冲区
+    RGBDFrame::Ptr          refFrame;       //参考
+
+    std::condition_variable keyframe_updated;
+    std::m
