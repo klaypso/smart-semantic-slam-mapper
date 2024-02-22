@@ -174,4 +174,12 @@ public:
     // 点集与边集
     vector<int>             vertexIdx;
     typedef map<int,int>    EdgeID;
-    map< EdgeID, g2o::EdgeSE3*
+    map< EdgeID, g2o::EdgeSE3* > edges;
+
+    // 参数读取类
+    const   ParameterReader&    parameterReader;
+
+    double  keyframe_min_translation        =0.3;
+    double  keyframe_min_rotation           =0.3;
+    int     nearbyFrames                    =2;
+    int     lastGr
