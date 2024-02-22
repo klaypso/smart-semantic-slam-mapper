@@ -182,4 +182,11 @@ public:
     double  keyframe_min_translation        =0.3;
     double  keyframe_min_rotation           =0.3;
     int     nearbyFrames                    =2;
-    int     lastGr
+    int     lastGraphSize                   =0;
+    double  loopAccuError                   =1.0;
+    double  localAccuError                  =1.0;
+
+};
+
+}
+#endif // POSE_GRAPH_H
