@@ -15,4 +15,12 @@
 #include "opencv2/contrib/contrib.hpp"
 #include "opencv2/core/core.hpp"
 #include "opencv2/features2d/features2d.hpp"
-#include "opencv2/n
+#include "opencv2/nonfree/features2d.hpp"
+#include "opencv2/nonfree/nonfree.hpp"
+#include "opencv2/video/tracking.hpp"
+
+using namespace std;
+using namespace cv;
+
+
+enum { DET_FAST, DET_STAR, DET_ORB, DET_SIFT, D
