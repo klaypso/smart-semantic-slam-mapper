@@ -23,4 +23,12 @@ using namespace std;
 using namespace cv;
 
 
-enum { DET_FAST, DET_STAR, DET_ORB, DET_SIFT, D
+enum { DET_FAST, DET_STAR, DET_ORB, DET_SIFT, DET_SURF, DET_GFTT,
+       DET_STAR_ADAPT, DET_FAST_ADAPT, DET_FAST_GRID, DET_STAR_GRID,DET_GFTT_GRID};
+
+enum { DES_SIFT, DES_SURF, DES_BRISK, DES_FREAK,DES_ORB};
+
+
+//core struct storing quadmatching result
+struct pmatch {
+    float   u
