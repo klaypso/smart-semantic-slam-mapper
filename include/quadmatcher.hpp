@@ -31,4 +31,7 @@ enum { DES_SIFT, DES_SURF, DES_BRISK, DES_FREAK,DES_ORB};
 
 //core struct storing quadmatching result
 struct pmatch {
-    float   u
+    float   u1p,v1p; // u,v-coordinates in previous left  image
+    int32_t i1p;     // feature index (for tracking)
+    float   u2p,v2p; // u,v-coordinates in previous right image
+    int32_t i2p;     // feature index (
