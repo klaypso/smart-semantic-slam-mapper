@@ -34,4 +34,8 @@ struct pmatch {
     float   u1p,v1p; // u,v-coordinates in previous left  image
     int32_t i1p;     // feature index (for tracking)
     float   u2p,v2p; // u,v-coordinates in previous right image
-    int32_t i2p;     // feature index (
+    int32_t i2p;     // feature index (for tracking)
+    float   u1c,v1c; // u,v-coordinates in current  left  image
+    int32_t i1c;     // feature index (for tracking)
+    float   u2c,v2c; // u,v-coordinates in current  right image
+    int32_t i2c;   
