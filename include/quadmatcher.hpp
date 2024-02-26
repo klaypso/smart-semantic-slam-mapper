@@ -47,3 +47,11 @@ struct pmatch {
             u1p(u1p),v1p(v1p),i1p(i1p),u2p(u2p),v2p(v2p),i2p(i2p),
             u1c(u1c),v1c(v1c),i1c(i1c),u2c(u2c),v2c(v2c),i2c(i2c) {}
   };
+
+class QuadFeatureMatch
+{
+public: QuadFeatureMatch(){};
+
+        QuadFeatureMatch(cv::Mat& img_lc_, cv::Mat& img_rc_,
+                         cv::Mat& img_lp_, cv::Mat& img_rp_,
+			 cv::Mat& img_s_rc_, cv::Mat& img_s_
