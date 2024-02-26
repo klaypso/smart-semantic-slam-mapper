@@ -38,4 +38,9 @@ struct pmatch {
     float   u1c,v1c; // u,v-coordinates in current  left  image
     int32_t i1c;     // feature index (for tracking)
     float   u2c,v2c; // u,v-coordinates in current  right image
-    int32_t i2c;   
+    int32_t i2c;     // feature index (for tracking)
+    short dis_c,dis_p;//disparity for the current and previous
+
+    pmatch(){}
+    pmatch(float u1p,float v1p,int32_t i1p,float u2p,float v2p,int32_t i2p,
+            float 
