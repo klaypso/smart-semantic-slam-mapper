@@ -61,4 +61,12 @@ public: QuadFeatureMatch(){};
         void init(int detector_type, int descriptor_type);
 
         //detect image feature points
-        void detectFeatu
+        void detectFeature();
+
+        //extract feature descriptor for feature matching
+        void extractDescriptor();
+
+        //quad matching/tracking feature points
+        void circularMatching();
+
+        //p
