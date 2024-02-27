@@ -54,4 +54,11 @@ public: QuadFeatureMatch(){};
 
         QuadFeatureMatch(cv::Mat& img_lc_, cv::Mat& img_rc_,
                          cv::Mat& img_lp_, cv::Mat& img_rp_,
-			 cv::Mat& img_s_rc_, cv::Mat& img_s_
+			 cv::Mat& img_s_rc_, cv::Mat& img_s_rp,
+			 bool mode_track_);
+
+        //init the detector type or descriptor type
+        void init(int detector_type, int descriptor_type);
+
+        //detect image feature points
+        void detectFeatu
