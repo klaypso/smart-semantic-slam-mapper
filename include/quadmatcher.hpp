@@ -78,4 +78,8 @@ private:
 
         //filter out bad tracks
         void filteringTracks(vector<Point2f>& point_lc, vector<Point2f>& point_rc,
-                   
+                            vector<Point2f>& point_lp, vector<Point2f>& point_rp,
+                             vector<Point2f>& point_lp_direct);
+
+        //nearest neighboring feature matching
+        void matching(vector<KeyPoin
