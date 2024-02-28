@@ -69,4 +69,13 @@ public: QuadFeatureMatch(){};
         //quad matching/tracking feature points
         void circularMatching();
 
-        //p
+        //print usage information of features
+        void  printParams( cv::Algorithm* algorithm );
+
+
+private:
+
+
+        //filter out bad tracks
+        void filteringTracks(vector<Point2f>& point_lc, vector<Point2f>& point_rc,
+                   
