@@ -82,4 +82,8 @@ private:
                              vector<Point2f>& point_lp_direct);
 
         //nearest neighboring feature matching
-        void matching(vector<KeyPoin
+        void matching(vector<KeyPoint> &keypoints1, Mat &descriptors1,
+                      vector<KeyPoint> &keypoints2, Mat &descriptors2,
+                      int search_width, int search_height, vector<DMatch>& matches);
+
+        std::vector<pmatch
