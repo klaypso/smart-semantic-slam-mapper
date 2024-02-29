@@ -93,4 +93,6 @@ private:
         void drawMatchesFlow(int time);
         void drawMatchesSimple(int time);
 
-        b
+        bool withinRegion(cv::Point2f& pt, cv::Size& region); //judge if a point is within a certain region
+        void KeyPoint2Point(vector<KeyPoint>& keypoint, vector<Point2f>& pt); //transform from keypoint to point2f
+  
