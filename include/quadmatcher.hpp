@@ -86,4 +86,11 @@ private:
                       vector<KeyPoint> &keypoints2, Mat &descriptors2,
                       int search_width, int search_height, vector<DMatch>& matches);
 
-        std::vector<pmatch
+        std::vector<pmatch> getMatches() { return quadmatches; }
+
+        //demonstration functions
+        void drawMatchesQuad(int time);
+        void drawMatchesFlow(int time);
+        void drawMatchesSimple(int time);
+
+        b
