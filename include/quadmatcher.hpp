@@ -99,4 +99,10 @@ private:
 
 public:
 
-        //quadmatches  --- the final output p_match vevtors, will used in visual odomet
+        //quadmatches  --- the final output p_match vevtors, will used in visual odometry
+        vector<pmatch> quadmatches;
+
+private:
+
+        /* ======================================================================================
+         * img_lc,img_lp,img_rc,img_rp -- input images i
