@@ -95,4 +95,8 @@ private:
 
         bool withinRegion(cv::Point2f& pt, cv::Size& region); //judge if a point is within a certain region
         void KeyPoint2Point(vector<KeyPoint>& keypoint, vector<Point2f>& pt); //transform from keypoint to point2f
-  
+        float caldistance(const cv::Mat& vec1, const cv::Mat& vec2, bool descriptor_binary); //calculate descriptor difference
+
+public:
+
+        //quadmatches  --- the final output p_match vevtors, will used in visual odomet
