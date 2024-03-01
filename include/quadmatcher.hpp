@@ -108,4 +108,6 @@ private:
          * img_lc,img_lp,img_rc,img_rp -- input images in left current, left previous, right current, right previous
          * keypoint_lc, keypoint_rc, keypoint_lp, keypoint_rp --  cv::KeyPoint vectors
          * point_lc ... ---- cv::Point2f vectors using for KLT tracking
-      
+         * descriptor_lc ... --- extracted feature descriptor by SIFT, SURF, ORB...
+         * detector     --- cv::Ptr structure using for detect image feature points
+         * descriptor   --- cv::Ptr structure using for extr
