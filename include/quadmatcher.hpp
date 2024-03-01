@@ -110,4 +110,7 @@ private:
          * point_lc ... ---- cv::Point2f vectors using for KLT tracking
          * descriptor_lc ... --- extracted feature descriptor by SIFT, SURF, ORB...
          * detector     --- cv::Ptr structure using for detect image feature points
-         * descriptor   --- cv::Ptr structure using for extr
+         * descriptor   --- cv::Ptr structure using for extract feature descriptor
+         * matcher      --- cv::Ptr structure using for matching features
+         * ====================================================================================*/
+         cv::Mat img_lc, img_lp, img_rc, i
