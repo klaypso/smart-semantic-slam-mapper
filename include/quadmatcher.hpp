@@ -105,4 +105,7 @@ public:
 private:
 
         /* ======================================================================================
-         * img_lc,img_lp,img_rc,img_rp -- input images i
+         * img_lc,img_lp,img_rc,img_rp -- input images in left current, left previous, right current, right previous
+         * keypoint_lc, keypoint_rc, keypoint_lp, keypoint_rp --  cv::KeyPoint vectors
+         * point_lc ... ---- cv::Point2f vectors using for KLT tracking
+      
