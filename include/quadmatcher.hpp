@@ -116,4 +116,11 @@ private:
          cv::Mat img_lc, img_lp, img_rc, img_rp, img_s_rc, img_s_rp;
          vector<KeyPoint> keypoint_lc,keypoint_rc,keypoint_lp,keypoint_rp;
          vector<cv::Point2f> point_lc,point_rc,point_lp,point_rp;
-         cv::Mat descriptor_lc,descriptor_rc,de
+         cv::Mat descriptor_lc,descriptor_rc,descriptor_lp,descriptor_rp;
+
+         Ptr<cv::FeatureDetector> detector;
+         Ptr<cv::DescriptorExtractor> descriptor;
+         Ptr<cv::DescriptorMatcher> matcher;
+
+
+          /*  ==============================================
