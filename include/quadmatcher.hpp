@@ -123,4 +123,6 @@ private:
          Ptr<cv::DescriptorMatcher> matcher;
 
 
-          /*  ==============================================
+          /*  ==================================================================================
+           *  mode_track -- indicator of tracking feature points or matching feature points
+           *  descriptor_binary -- indicator of using binary feature desc
