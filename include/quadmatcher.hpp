@@ -127,4 +127,12 @@ private:
            *  mode_track -- indicator of tracking feature points or matching feature points
            *  descriptor_binary -- indicator of using binary feature descriptor or not
            *  distance_threshold -- threshold using in feature matching, if bigger than it, not matched
-           *  ==========================================================
+           *  ===================================================================================*/
+         bool mode_track,descriptor_binary;
+         float distance_threshold;
+
+
+};
+
+#endif
+
