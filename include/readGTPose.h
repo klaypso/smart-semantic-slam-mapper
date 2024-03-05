@@ -44,4 +44,6 @@ public:
         }
         while (!infile.eof())
         {
- 
+            POSEFRAME tmpPose;
+            infile >> tmpPose.pose[0] >> tmpPose.pose[1] >> tmpPose.pose[2] >> tmpPose.pose[3]
+                     >> tmpPose.pose[4] >> tmpPose.pose[5] >> tmpPose
