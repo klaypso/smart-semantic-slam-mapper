@@ -50,4 +50,12 @@ public:
                       >> tmpPose.pose[8] >> tmpPose.pose[9] >> tmpPose.pose[10] >> tmpPose.pose[11];
             poseframe.push_back(tmpPose);
         }
-     
+        infile.close();
+    }
+
+    void getData( int index, cv::Mat& poseMatrix )
+    {
+        // Index Boundary Control
+        if (index > poseframe.size()-2) 
+        {
+            std::cout << BOLDRED"ERROR! I
