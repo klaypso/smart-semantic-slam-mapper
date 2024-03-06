@@ -58,4 +58,10 @@ public:
         // Index Boundary Control
         if (index > poseframe.size()-2) 
         {
-            std::cout << BOLDRED"ERROR! I
+            std::cout << BOLDRED"ERROR! INDEX OUT OF RANGE!" << RESET" " << std::endl;
+            return;
+        }
+
+        std::vector<POSEFRAME>::iterator iter = poseframe.begin();
+        iter += index;
+        poseMatrix = cv::Mat::zeros(3,4,CV_
