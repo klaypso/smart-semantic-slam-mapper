@@ -23,4 +23,10 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 * roi          ----------- Region of Interest
 */
 void triangulate10D(const cv::Mat &img, const cv::Mat& disp, cv::Mat& xyz,
-                    const double f
+                    const double f, const double cx, const double cy, const double b, ROI3D roi);
+
+
+/* ------------- Rectify the 3D reconstruction results by the estimated pitch angle
+*
+* Input: xyz       ------- the point cloud
+* Input: pitch     ------- the e
