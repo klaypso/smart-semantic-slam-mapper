@@ -18,4 +18,9 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 /*---------  3D reconstruction by triangulation and create a 10-dimensional matrix xyz
 * img          ----------- left image
 * disp         ----------- The disparity result
-* xyz          ----------- Output, 10 dimensional matrix contains 1, X, 2, Y, 3,Z, 4, u, 5,v, 6, disparity, 7, intensity, 8, intesity in Udisparity, 9 intensity in Vdisparity, 10
+* xyz          ----------- Output, 10 dimensional matrix contains 1, X, 2, Y, 3,Z, 4, u, 5,v, 6, disparity, 7, intensity, 8, intesity in Udisparity, 9 intensity in Vdisparity, 10, motion mark
+* f, cx, cy, b ----------- Calibration parameters
+* roi          ----------- Region of Interest
+*/
+void triangulate10D(const cv::Mat &img, const cv::Mat& disp, cv::Mat& xyz,
+                    const double f
