@@ -33,4 +33,10 @@ void triangulate10D(const cv::Mat &img, const cv::Mat& disp, cv::Mat& xyz,
 * Output: xyz_new  ------- rectified points cloud
 * pitch1, pitch2   ------- the two estimated pitch angle from V-disparity image
 */
-void correct3DPoints(cv::Mat& xyz, ROI3D &roi_, const double& p
+void correct3DPoints(cv::Mat& xyz, ROI3D &roi_, const double& pitch1, const double &pitch2);
+
+/* ------------- set image ROI according to the 3D reconstruction results and ROI3D
+*
+* Input: xyz         ------- the point cloud
+* Output: roi_mask   -------
+*/
