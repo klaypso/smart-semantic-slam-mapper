@@ -40,3 +40,6 @@ void correct3DPoints(cv::Mat& xyz, ROI3D &roi_, const double& pitch1, const doub
 * Input: xyz         ------- the point cloud
 * Output: roi_mask   -------
 */
+void setImageROI ( cv::Mat& xyz, cv::Mat &roi_mask);
+
+#endif
