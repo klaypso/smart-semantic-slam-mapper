@@ -18,4 +18,14 @@
   * 如果进入丢失态，可能有两种情况：暂时性遮挡或kidnapped。
   * 对于遮挡，最好的策略是原地等待； 对于kidnapped，则应该重置并通知pose graph，使用回环检测来确定全局位置。
   *  
- 
+  */
+
+// libviso2
+#include "quadmatcher.hpp"
+#include "vo.hpp"
+#include "vo_stereo.hpp"
+#include "matrix_.h"
+
+#include "common_headers.h"
+#include "parameter_reader.h"
+#include "rgbd
