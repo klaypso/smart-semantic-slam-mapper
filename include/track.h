@@ -28,4 +28,19 @@
 
 #include "common_headers.h"
 #include "parameter_reader.h"
-#include "rgbd
+#include "rgbdframe.h"
+#include "orb.h"
+#include "pnp.h"
+
+#include <thread>
+#include <mutex>
+#include <functional>
+
+// motion
+#include "basicStructure.hpp"
+#include "vo_stereo.hpp"
+#include "uvdisparity.hpp"
+
+using namespace rgbd_tutor;
+
+na
