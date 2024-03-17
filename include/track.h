@@ -61,4 +61,8 @@ public:
 
 public:
     //  公共接口
-    Tr
+    Tracker( const rgbd_tutor::ParameterReader& para, VisualOdometryStereo::parameters param ) :
+        parameterReader( para ), viso( param )
+    {
+        orb = make_shared<rgbd_tutor::OrbFeature> (para);
+  
