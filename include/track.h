@@ -43,4 +43,22 @@
 
 using namespace rgbd_tutor;
 
-na
+namespace rgbd_tutor {
+
+class PoseGraph;
+
+class Tracker
+{
+    
+public:
+    typedef shared_ptr<Tracker> Ptr;
+    enum    trackerState
+    {
+        NOT_READY=0,
+        OK,
+        LOST
+    };
+
+public:
+    //  公共接口
+    Tr
