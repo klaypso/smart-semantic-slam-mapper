@@ -65,4 +65,8 @@ public:
         parameterReader( para ), viso( param )
     {
         orb = make_shared<rgbd_tutor::OrbFeature> (para);
-  
+        pnp = make_shared<rgbd_tutor::PnPSolver> (para, *orb);
+        max_lost_frame = para.getData<int>("tracker_max_lost_frame");
+        refFramesSize = para.getData<int>("tracker_ref_frames");
+
+        pose = Matrix_::eye
