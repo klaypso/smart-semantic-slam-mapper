@@ -69,4 +69,9 @@ public:
         max_lost_frame = para.getData<int>("tracker_max_lost_frame");
         refFramesSize = para.getData<int>("tracker_ref_frames");
 
-        pose = Matrix_::eye
+        pose = Matrix_::eye(4); //visual odometry
+        poseChanged = Matrix_::eye(4); //visual odometry
+
+        // motion
+        double baseline = parameterReader.getData<double>("camera.baseline");
+        do
