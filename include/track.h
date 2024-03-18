@@ -77,4 +77,8 @@ public:
         double cu = parameterReader.getData<double>("camera.cx");
         double cv = parameterReader.getData<double>("camera.cy");
         double f = parameterReader.getData<double>("camera.fx");
-        double roix = (int)parameterReader.get
+        double roix = (int)parameterReader.getData<double>("camera.roix");
+        double roiy = (int)parameterReader.getData<double>("camera.roiy");
+        double roiz = (int)parameterReader.getData<double>("camera.roiz");
+
+        roi_3d.x_max = roix; //R
