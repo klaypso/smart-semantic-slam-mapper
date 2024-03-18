@@ -81,4 +81,14 @@ public:
         double roiy = (int)parameterReader.getData<double>("camera.roiy");
         double roiz = (int)parameterReader.getData<double>("camera.roiz");
 
-        roi_3d.x_max = roix; //R
+        roi_3d.x_max = roix; //ROI 感兴趣区域
+        roi_3d.y_max = roiy;
+        roi_3d.z_max = roiz;
+        /**
+         * camera.roix=20
+         * camera.roiy=5
+         * camera.roiz=30
+         * */
+        calib_.f = f;
+        calib_.c_x = cu;
+ 
