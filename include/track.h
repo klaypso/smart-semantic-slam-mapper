@@ -74,4 +74,7 @@ public:
 
         // motion
         double baseline = parameterReader.getData<double>("camera.baseline");
-        do
+        double cu = parameterReader.getData<double>("camera.cx");
+        double cv = parameterReader.getData<double>("camera.cy");
+        double f = parameterReader.getData<double>("camera.fx");
+        double roix = (int)parameterReader.get
