@@ -91,4 +91,9 @@ public:
          * */
         calib_.f = f;
         calib_.c_x = cu;
- 
+        calib_.c_y = cv;
+        calib_.b = baseline;
+
+        uv_disparity.SetCalibPars(calib_);  //给出相机标定参数
+        uv_disparity.SetROI3D(roi_3d);        //划定感兴趣区域 ---ROI
+        uv_disparity.SetOutThresho
