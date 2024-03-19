@@ -96,4 +96,7 @@ public:
 
         uv_disparity.SetCalibPars(calib_);  //给出相机标定参数
         uv_disparity.SetROI3D(roi_3d);        //划定感兴趣区域 ---ROI
-        uv_disparity.SetOutThresho
+        uv_disparity.SetOutThreshold(6.0f);   //outlier rejection threshold  局外点否定范围
+        uv_disparity.SetInlierTolerance(3);   //set inlier tolerance 局内点的容差范围
+        uv_disparity.SetMinAdjustIntense(20); //设置分割的最小调整强度
+  
