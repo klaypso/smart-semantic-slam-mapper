@@ -99,4 +99,13 @@ public:
         uv_disparity.SetOutThreshold(6.0f);   //outlier rejection threshold  局外点否定范围
         uv_disparity.SetInlierTolerance(3);   //set inlier tolerance 局内点的容差范围
         uv_disparity.SetMinAdjustIntense(20); //设置分割的最小调整强度
-  
+    }
+
+    void setPoseGraph( shared_ptr<PoseGraph> poseGraph_ )
+    {
+        this->poseGraph = poseGraph_;
+    }
+    //  放入一个新帧，返回此帧所在的姿态
+    Eigen::Isometry3d    updateFrame( RGBDFrame::Ptr& newFrame );
+
+    
