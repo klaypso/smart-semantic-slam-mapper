@@ -108,4 +108,10 @@ public:
     //  放入一个新帧，返回此帧所在的姿态
     Eigen::Isometry3d    updateFrame( RGBDFrame::Ptr& newFrame );
 
-    
+    trackerState getState() const { return state; }
+
+    // adjust the frame according to the given ref frame
+    bool    adjust( const RGBDFrame::Ptr& ref )
+    {
+        unique_lock<mutex> lck(adjustMutex);
+        co
