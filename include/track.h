@@ -114,4 +114,8 @@ public:
     bool    adjust( const RGBDFrame::Ptr& ref )
     {
         unique_lock<mutex> lck(adjustMutex);
-        co
+        cout<<"adjust frame frame "<<ref->id<<" to "<<currentFrame->id<<endl;
+        PNP_INFORMATION info;
+        if (pnp->solvePnPLazy( ref, currentFrame, info) == true)
+        {
+            currentFrame->set
