@@ -135,4 +135,16 @@ public:
     ROI3D roi_3d = ROI3D(30,10,30);  
     CalibPars calib_;
     UVDisparity uv_disparity;
-    double pitch1, 
+    double pitch1, pitch2;
+
+protected:
+
+    // 私有方法
+    // 第一帧时初始化，对新帧提取特征并作为refframe
+    void    initFirstFrame( );
+    // 正常的track，比较current和refframe
+    void    trackRefFrame();
+    // 丢失恢复
+    void    lostRecover();
+
+pr
