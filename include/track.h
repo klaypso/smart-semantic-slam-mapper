@@ -125,4 +125,14 @@ public:
             state = OK;
             cout<<"adjust ok"<<endl;
             return true;
-    
+        }
+        cout<<"adjust failed."<<endl;
+        return false;
+    }
+
+
+    // motion
+    ROI3D roi_3d = ROI3D(30,10,30);  
+    CalibPars calib_;
+    UVDisparity uv_disparity;
+    double pitch1, 
