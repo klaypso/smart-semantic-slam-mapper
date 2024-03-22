@@ -118,4 +118,11 @@ public:
         PNP_INFORMATION info;
         if (pnp->solvePnPLazy( ref, currentFrame, info) == true)
         {
-            currentFrame->set
+            currentFrame->setTransform( info.T*ref->getTransform() );
+            refFrames.clear();
+            refFrames.push_back(ref);
+            cntLost = 0; 
+            state = OK;
+            cout<<"adjust ok"<<endl;
+            return true;
+    
