@@ -147,4 +147,14 @@ protected:
     // 丢失恢复
     void    lostRecover();
 
-pr
+protected:
+    // 数据
+
+    // 当前帧
+    rgbd_tutor::RGBDFrame::Ptr  currentFrame    =nullptr;
+
+    // 当前帧的参考帧
+    // 队列结构，长度固定
+    deque< RGBDFrame::Ptr >  refFrames;
+    int refFramesSize   =5;
+    Eigen::Isometry3d  
