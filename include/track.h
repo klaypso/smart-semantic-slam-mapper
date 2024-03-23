@@ -178,4 +178,12 @@ protected:
 
 public:
     // libviso2
-    Matrix_ pose = Matrix_::eye(4); //visu
+    Matrix_ pose = Matrix_::eye(4); //visual odometry
+    Matrix_ poseChanged = Matrix_::eye(4); //visual odometry
+    VisualOdometryStereo viso;
+    void estimateVO();
+
+protected:
+    // 其他用途
+    shared_ptr<rgbd_tutor::PnPSolver>   pnp;
+    shared_ptr<rgbd_t
