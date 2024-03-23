@@ -169,3 +169,13 @@ protected:
     trackerState    state   =NOT_READY;
 
     // 参数
+    int     cntLost = 0;
+    int     max_lost_frame = 5;
+
+    // pose graph 
+    shared_ptr<PoseGraph>   poseGraph =nullptr;
+    mutex   adjustMutex;
+
+public:
+    // libviso2
+    Matrix_ pose = Matrix_::eye(4); //visu
