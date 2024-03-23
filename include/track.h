@@ -157,4 +157,15 @@ protected:
     // 队列结构，长度固定
     deque< RGBDFrame::Ptr >  refFrames;
     int refFramesSize   =5;
-    Eigen::Isometry3d  
+    Eigen::Isometry3d   lastPose = Eigen::Isometry3d::Identity();
+    
+    // 速度
+    Eigen::Isometry3d   speed;
+
+    // 参数
+    const rgbd_tutor::ParameterReader&   parameterReader;
+
+    // 状态
+    trackerState    state   =NOT_READY;
+
+    // 参数
