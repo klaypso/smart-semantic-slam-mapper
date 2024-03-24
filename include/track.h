@@ -186,4 +186,12 @@ public:
 protected:
     // 其他用途
     shared_ptr<rgbd_tutor::PnPSolver>   pnp;
-    shared_ptr<rgbd_t
+    shared_ptr<rgbd_tutor::OrbFeature>  orb;
+
+};
+
+}
+
+
+
+#endif // TRACK_H
