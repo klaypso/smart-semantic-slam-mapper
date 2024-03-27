@@ -38,4 +38,6 @@ public:
   ~VisualOdometry ();
 
 
-  
+  // returns transformation from previous to current coordinates as a 4x4
+  // homogeneous transformation matrix Tr_delta, with the following semantics:
+  // p_t = Tr_delta * p_ {t-1} takes a point in the camera coordi
