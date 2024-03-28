@@ -56,4 +56,10 @@ public:
     
 public:
 
-  std::vector<pmatch>  quadmat
+  std::vector<pmatch>  quadmatches;  // feature point matches
+  std::vector<pmatch>  quadmatches_inlier;  // feature point inliers
+  std::vector<pmatch>  quadmatches_outlier;  // feature point outliers
+
+protected:
+
+  // ca
