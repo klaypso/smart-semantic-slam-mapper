@@ -79,4 +79,13 @@ protected:
   double                         *J;          // jacobian
   double                         *p_observe;  // observed 2d points
   double                         *p_predict;  // predicted 2d points
-  std::vector<int>             
+  std::vector<int>               inliers;    // inlier set
+  std::vector<int>               outliers;    // outlier set
+
+private:
+  
+  parameters                    param;     // common parameters
+};
+
+#endif // VO_H
+
