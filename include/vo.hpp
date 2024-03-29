@@ -68,4 +68,8 @@ protected:
   // compute transformation matrix from transformation vector
   cv::Mat transformationVectorToMatrix (std::vector<double> tr);
 
-  // compute motio
+  // compute motion from previous to current coordinate system
+  // if motion could not be computed, resulting vector will be of size 0
+  virtual std::vector<double> estimateMotion (std::vector<pmatch>& quadmatches) = 0;
+
+  // g
