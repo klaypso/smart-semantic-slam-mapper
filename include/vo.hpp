@@ -72,4 +72,8 @@ protected:
   // if motion could not be computed, resulting vector will be of size 0
   virtual std::vector<double> estimateMotion (std::vector<pmatch>& quadmatches) = 0;
 
-  // g
+  // get random and unique sample of num numbers from 1:N
+  vector<int> getRandomSample(int N, int num);
+
+  cv::Mat                        Tr_delta; //transformation (previous -> current frame)
+  double 
