@@ -76,4 +76,7 @@ protected:
   vector<int> getRandomSample(int N, int num);
 
   cv::Mat                        Tr_delta; //transformation (previous -> current frame)
-  double 
+  double                         *J;          // jacobian
+  double                         *p_observe;  // observed 2d points
+  double                         *p_predict;  // predicted 2d points
+  std::vector<int>             
