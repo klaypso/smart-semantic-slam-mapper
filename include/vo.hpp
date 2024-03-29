@@ -62,4 +62,10 @@ public:
 
 protected:
 
-  // ca
+  // calls motion estimation
+  bool updateMotion ();
+
+  // compute transformation matrix from transformation vector
+  cv::Mat transformationVectorToMatrix (std::vector<double> tr);
+
+  // compute motio
