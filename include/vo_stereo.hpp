@@ -57,3 +57,24 @@ public:
   bool Process (QuadFeatureMatch& quadmatches);
 
 private:
+
+  std::vector<double>  estimateMotion (std::vector<pmatch>& quadmatches);
+  //allocate the inliers and outliers of the matched feature points
+   void getInOutMatches(std::vector<pmatch>& quadmatches, vector<int>& inliers);
+
+ // given inlier and outlier the disparity for the upcoming segmentation
+   void givenMatchesDisparity(cv::Mat& disparity);
+
+  enum                 result { UPDATED, FAILED, CONVERGED };  
+  result               updateParameters(std::vector<pmatch>& quadmatches,vector<int> &active, vector<double> &tr,double step_size,double eps);
+  void                 computeObservations(std::vector<pmatch> &quadmatches, vector<int> &active);
+  void                 computeResidualsAndJacobian(std::vector<double> &tr,std::vector<int> &active);
+  std::vector<int> getInlier(std::vector<pmatch>& quadmatches,std::vector<double> &tr);
+  double *X,*Y,*Z;    // 3d points
+  double *p_residual; // residuals (p_residual=p_observe-p_predict)
+  
+  // parameters
+  parameters param;
+};
+
+#endif // VO_STEREO_H
