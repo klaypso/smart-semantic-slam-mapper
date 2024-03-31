@@ -17,4 +17,5 @@ target_link_libraries( rgbd_tutor_lib
 )
 
 target_link_libraries( motion_lib
-    ${OpenCV_
+    ${OpenCV_LIBRARIES}
+)

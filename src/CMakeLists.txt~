@@ -1,0 +1,4 @@
+add_library( rgbd_tutor_lib SHARED    
+    rgbdframe.cpp parameter_reader.cpp orb.cpp pnp.cpp track.cpp looper.cpp pose_graph.cpp 
+    mapper.cpp stereo.cpp segnet.cpp 
+    quadmatcher.cpp vo.cp
