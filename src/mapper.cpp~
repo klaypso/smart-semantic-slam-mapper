@@ -183,3 +183,48 @@ void Mapper::semantic_motion_fuse(const RGBDFrame::Ptr &frame)
 	cv::drawContours(semantic_mask, contours, -1, cv::Scalar(255), 2); 
 
 	// get motion_semantic result
+	std::vector<cv::Mat> result_masks;
+	for (int i = 0; i < contours.size(); i++)
+	{
+		cv::Mat mask = cv::Mat::zeros(img.size(), img.type());
+
+		cv::Mat tmp_mask(img.size(), CV_8U, cv::Scalar(0));
+		cv::drawContours(tmp_mask, contours, i, cv::Scalar(255,255,255), CV_FILLED, 8);
+
+		if (cv::contourArea(contours[i]) > area_thres)
+		{
+			cv::drawContours(mask, contours, i, cv::Scalar(255,255,255), CV_FILLED, 8);
+			int overlay_count = 0;
+			int mask_count = 1;
+			for (int v = 0; v < img.rows; v++)
+			{
+				uchar* motion_ptr = motion.ptr<uchar>(v);
+				uchar* mask_ptr = mask.ptr<uchar>(v);
+				for (int u = 0; u < img.cols; u++)
+				{
+					if (mask_ptr[u] == 255) 
+					{
+						mask_count ++;
+						if (motion_ptr[u] == 255)
+						{
+							overlay_count ++;
+						}
+					}
+				}
+			}
+			double overlay_portion = overlay_count * 1.0f / mask_count;
+			//std::cout << "area_portion_" << i << ": " << overlay_portion << std::endl;
+			if (overlay_portion > overlay_portion_thres)
+			{
+				result_masks.push_back(mask);
+			}
+		}
+	}
+
+	if (result_masks.size() <= 0) 
+		return;
+	
+	for (int i = 0; i < result_masks.size(); i++)
+		moving_mask += result_masks[i];
+*/
+}
