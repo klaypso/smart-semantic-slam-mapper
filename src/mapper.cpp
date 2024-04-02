@@ -244,3 +244,30 @@ void Mapper::semantic_motion_fuse(const RGBDFrame::Ptr &frame)
 				uchar* motion_ptr = motion.ptr<uchar>(v);
 				uchar* mask_ptr = mask.ptr<uchar>(v);
 				for (int u = 0; u < img.cols; u++)
+				{
+					if (mask_ptr[u] == 255) 
+					{
+						mask_count ++;
+						if (motion_ptr[u] == 255)
+						{
+							overlay_count ++;
+						}
+					}
+				}
+			}
+			double overlay_portion = overlay_count * 1.0f / mask_count;
+			//std::cout << "area_portion_" << i << ": " << overlay_portion << std::endl;
+			if (overlay_portion > overlay_portion_thres)
+			{
+				result_masks.push_back(mask);
+			}
+		}
+	}
+
+	if (result_masks.size() <= 0) 
+		return;
+	
+	for (int i = 0; i < result_masks.size(); i++)
+		moving_mask += result_masks[i];
+*/
+}
