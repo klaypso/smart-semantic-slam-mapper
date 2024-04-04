@@ -799,3 +799,53 @@ void Matrix_::svd(Matrix_ &U2,Matrix_ &W,Matrix_ &V) {
 
   // release temporary memory
   free(w);
+  free(rv1);
+  free(su);
+  free(sv);
+}
+
+ostream& operator<< (ostream& out,const Matrix_& M) {
+  if (M.m==0 || M.n==0) {
+    out << "[empty Matrix_]";
+  } else {
+    char buffer[1024];
+    for (int32_t i=0; i<M.m; i++) {
+      for (int32_t j=0; j<M.n; j++) {
+        sprintf(buffer,"%12.7f ",M.val[i][j]);
+        out << buffer;
+      }
+      if (i<M.m-1)
+        out << endl;
+    }
+  }
+  return out;
+}
+
+void Matrix_::allocateMemory (const int32_t m_,const int32_t n_) {
+  m = abs(m_); n = abs(n_);
+  if (m==0 || n==0) {
+    val = 0;
+    return;
+  }
+  val    = (FLOAT**)malloc(m*sizeof(FLOAT*));
+  val[0] = (FLOAT*)calloc(m*n,sizeof(FLOAT));
+  for(int32_t i=1; i<m; i++)
+    val[i] = val[i-1]+n;
+}
+
+void Matrix_::releaseMemory () {
+  if (val!=0) {
+    free(val[0]);
+    free(val);
+  }
+}
+
+FLOAT Matrix_::pythag(FLOAT a,FLOAT b) {
+  FLOAT absa,absb;
+  absa = fabs(a);
+  absb = fabs(b);
+  if (absa > absb)
+    return absa*sqrt(1.0+SQR(absb/absa));
+  else
+    return (absb == 0.0 ? 0.0 : absb*sqrt(1.0+SQR(absa/absb)));
+}
