@@ -21,4 +21,9 @@ vector<cv::DMatch> OrbFeature::match( const RGBDFrame::Ptr& frame1, const RGBDFr
     matcher->knnMatch( desp1, desp2, matches_knn, 2 );
     vector< cv::DMatch > matches;
     for ( size_t i=0; i<matches_knn.size(); i++ )
-    
+    {
+        if (matches_knn[i][0].distance < knn_match_ratio * matches_knn[i][1].distance )
+        matches.push_back( matches_knn[i][0] );
+    }
+    return matches;
+}
