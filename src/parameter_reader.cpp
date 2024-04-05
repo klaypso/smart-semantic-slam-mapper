@@ -1,2 +1,7 @@
 #include "rgbdframe.h"
-#include "parame
+#include "parameter_reader.h"
+
+rgbd_tutor::CAMERA_INTRINSIC_PARAMETERS rgbd_tutor::ParameterReader::getCamera() const
+{
+    static rgbd_tutor::CAMERA_INTRINSIC_PARAMETERS camera;
+    camera.fx = this->getData<double>("camera.fx"
