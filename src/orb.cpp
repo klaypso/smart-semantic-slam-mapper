@@ -16,4 +16,9 @@ using namespace rgbd_tutor;
 vector<cv::DMatch> OrbFeature::match( const RGBDFrame::Ptr& frame1, const RGBDFrame::Ptr& frame2 ) const
 {
     vector< vector<cv::DMatch> > matches_knn;
-    cv::Mat desp1 = frame1->getAllDescriptor
+    cv::Mat desp1 = frame1->getAllDescriptors();
+    cv::Mat desp2 = frame2->getAllDescriptors();
+    matcher->knnMatch( desp1, desp2, matches_knn, 2 );
+    vector< cv::DMatch > matches;
+    for ( size_t i=0; i<matches_knn.size(); i++ )
+    
