@@ -80,3 +80,148 @@ bool rgbd_tutor::PnPSolver::solvePnP( const vector<cv::Point2f>& img, const vect
             if ( e->chi2() > 5.991 )
             {
                 inliers[ e->id() ] = false;
+                e->setLevel(1);
+                good -- ;
+            }
+            else
+            {
+                // 否则就是inlier
+                inliers[i] = true;
+                e->setLevel(0);
+            }
+
+            // 去掉较大误差的边后，就不必再用robust kernel了
+            if (it==2)
+                e->setRobustKernel( nullptr );
+        }
+
+        // 如果inlier太少，就中断
+        if (good < 5)
+            break;
+    }
+
+    for ( size_t i=0; i<inliers.size(); i++ )
+    {
+        if ( inliers[i] )
+        {
+            inliersIndex.push_back(i);
+        }
+    }
+
+    g2o::VertexSE3Expmap* vSE_recov = dynamic_cast<g2o::VertexSE3Expmap*> (optimizer.vertex(0));
+    g2o::SE3Quat    se3_recov = vSE_recov->estimate();
+
+    transform = Eigen::Isometry3d( se3_recov );
+
+    if (inliers.size() > min_inliers)
+        return true;
+    return false;
+}
+
+bool rgbd_tutor::PnPSolver::solvePnPLazy( const rgbd_tutor::RGBDFrame::Ptr & frame1, const rgbd_tutor::RGBDFrame::Ptr frame2, PNP_INFORMATION& pnp_information, bool drawMatches )
+{
+    vector<cv::DMatch>  matches = orb.match( frame1, frame2 );
+    if ( matches.size() <= min_match )
+        return false;
+    vector<cv::Point3f> obj;
+    vector<cv::Point2f> img;
+
+    vector<cv::DMatch>  validMatches;
+
+    int before_label = 0;
+    int after_label = 0; 
+    for (auto m:matches)
+    {
+        cv::Point3f pObj = frame1->features[m.queryIdx].position;
+        if (pObj == cv::Point3f(0,0,0))
+            continue;
+        if (drawMatches)
+        {
+            validMatches.push_back(m);
+        }
+	// semantic label validation
+	before_label ++;
+/*
+	int frame1_x = frame1->features[m.queryIdx].keypoint.pt.x;
+	int frame1_y = frame1->features[m.queryIdx].keypoint.pt.y;
+	int frame2_x = frame2->features[m.trainIdx].keypoint.pt.x;
+	int frame2_y = frame2->features[m.trainIdx].keypoint.pt.y;
+	if (frame1->raw_semantic.ptr<uchar>(frame1_y)[frame1_x] != frame2->raw_semantic.ptr<uchar>(frame2_y)[frame2_x]) continue;
+*/
+	after_label ++;
+
+        obj.push_back( pObj );
+        img.push_back( frame2->features[m.trainIdx].keypoint.pt );
+    }
+    //cout << RED << "Semantic Validation: " << after_label << "/" << before_label << RESET << endl;
+
+    if ( img.size() <= min_match || obj.size() <= min_match )
+        return false;
+
+    vector<int> inliersIndex;
+    Eigen::Isometry3d   init_transform = frame1->T_f_w.inverse() * frame2->T_f_w;
+    //cout<<"init transform = "<<init_transform.matrix()<<endl;
+
+    /* G2O求解pnp */
+    bool b = solvePnP( img, obj, frame1->camera, inliersIndex, init_transform );
+
+    pnp_information.numFeatureMatches = img.size();
+    pnp_information.numInliers = inliersIndex.size();
+    pnp_information.T = init_transform;
+    
+
+        /* RANSAC求解pnp 
+	double camera_matrix_data[3][3] = {
+		{frame1->camera.fx, 0, frame1->camera.cx},
+		{0, frame1->camera.fy, frame1->camera.cy},
+		{0, 0, 1}
+	};
+
+	cout << "Solving pnp..." << endl;
+	cv::Mat cameraMatrix( 3, 3, CV_64F, camera_matrix_data );
+	cv::Mat rvec, tvec, inliers;
+
+	bool b = true;
+	cv::solvePnPRansac(obj, img, cameraMatrix, cv::Mat(), rvec, tvec, false, 100, 1.0, 100, inliers);
+
+	cv::Mat R;
+	cv::Rodrigues( rvec, R );
+	Eigen::Matrix3d r;
+	cv::cv2eigen( R, r );
+
+	Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+
+	Eigen::AngleAxisd angle( r );
+	Eigen::Translation<double,3> trans( tvec.at<double>(0,0), tvec.at<double>(0,1), tvec.at<double>(0,2) );
+
+	T = angle;
+	T(0,3) = tvec.at<double>(0,0);
+	T(1,3) = tvec.at<double>(0,1);
+	T(2,3) = tvec.at<double>(0,2);
+
+        pnp_information.numFeatureMatches = img.size();
+        pnp_information.numInliers = inliers.rows;
+        pnp_information.T = T;
+	*/
+
+
+    if (drawMatches == true && b==true)
+    {
+        vector<cv::DMatch> inlierMatches;
+        for ( int index:inliersIndex )
+            inlierMatches.push_back( validMatches[index] );
+        cv::Mat out;
+        cv::drawMatches(frame1->rgb, frame1->getAllKeypoints(),
+                        frame2->rgb, frame2->getAllKeypoints(),
+                        inlierMatches, out);
+        cv::imshow( "inlier matches", out );
+	//cv::waitKey(0);
+    }
+
+    if ( pnp_information.numInliers < min_inliers )
+    {
+        return false;
+    }
+    return true;
+
+}
