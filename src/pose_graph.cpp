@@ -14,4 +14,10 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
     {
         // 图是空的，直接加入原始点
         unique_lock<mutex> lck(keyframes_mutex);
-        keyframe
+        keyframes.push_back(frame);
+        refFrame = frame;
+        g2o::VertexSE3* v = new g2o::VertexSE3();
+        v->setId( frame->id );
+        v->setEstimate( frame->T_f_w );
+        v->setFixed(true);
+        optimizer.addVertex( v );
