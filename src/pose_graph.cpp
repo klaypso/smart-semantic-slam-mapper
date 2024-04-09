@@ -27,4 +27,9 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
 
     // 计算 frame 和 refFrame 之间的位移差
     Eigen::Isometry3d delta = frame->getTransform().inverse() * refFrame->getTransform();
-  
+    if ( norm_translate( delta ) > keyframe_min_translation ||
+         norm_rotate( delta ) > keyframe_min_rotation )
+    {
+        // 离keyframe够远
+        // 在key frames中进行插入，并在图中生成对应节点和边
+        unique_lock<mutex> lck(keyframes
