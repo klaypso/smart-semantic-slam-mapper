@@ -34,4 +34,10 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
         // 在key frames中进行插入，并在图中生成对应节点和边
         unique_lock<mutex> lck(keyframes_mutex);
         cout<<YELLOW<<"adding keyframe "<<frame->id<<" with ref to "<<refFrame->id<<", n_t="<<norm_translate( delta )<<",n_r="<<norm_rotate(delta)<<RESET<<endl;
-        newFrame
+        newFrames.push_back( frame );
+        
+        //  add the vertex
+        g2o::VertexSE3* v = new g2o::VertexSE3();
+        v->setId( frame->id );
+        v->setEstimate( frame->getTransform() );
+        v->setFi
