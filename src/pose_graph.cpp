@@ -32,4 +32,6 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
     {
         // 离keyframe够远
         // 在key frames中进行插入，并在图中生成对应节点和边
-        unique_lock<mutex> lck(keyframes
+        unique_lock<mutex> lck(keyframes_mutex);
+        cout<<YELLOW<<"adding keyframe "<<frame->id<<" with ref to "<<refFrame->id<<", n_t="<<norm_translate( delta )<<",n_r="<<norm_rotate(delta)<<RESET<<endl;
+        newFrame
