@@ -57,4 +57,12 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
         // because the state is estimated from tracker
         edge->setMeasurementFromState();
         edge->setInformation( Eigen::Matrix<double,6,6>::Identity() * 100);
-        edge->setRobustKernel( new g2o::RobustKernelHub
+        edge->setRobustKernel( new g2o::RobustKernelHuber() );
+
+        EdgeID id;
+        id[refFrame->id] = frame->id;
+        edges[ id ] = edge;
+        optimizer.addEdge( edge );
+        
+        // set ref frame to current
+        refFrame = fr
