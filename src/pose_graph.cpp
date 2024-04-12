@@ -94,3 +94,10 @@ void PoseGraph::mainLoop()
         keyframe_updated.wait( lck_update_keyframe );    //等到keyframes有更新
         cout<<"keyframes are updated"<<endl;
         boost::timer timer;
+        // 复制一份newFrames，防止处理的时候有新的东西插入
+        unique_lock<mutex> lck(keyframes_mutex);
+        vector<RGBDFrame::Ptr>  newFrames_copy = newFrames;
+        newFrames.clear();
+        
+
+        bool    findLargeLoop = false;
