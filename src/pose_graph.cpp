@@ -65,4 +65,20 @@ bool PoseGraph::tryInsertKeyFrame(RGBDFrame::Ptr& frame)
         optimizer.addEdge( edge );
         
         // set ref frame to current
-        refFrame = fr
+        refFrame = frame;
+
+        keyframe_updated.notify_one();
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+/**
+ * @brief PoseGraph::mainLoop
+ */
+void PoseGraph::mainLoop()
+{
+    cout<<"starting pose graph th
