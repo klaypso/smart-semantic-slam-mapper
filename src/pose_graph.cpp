@@ -90,3 +90,7 @@ void PoseGraph::mainLoop()
         {
             break;
         }
+        unique_lock<mutex> lck_update_keyframe(keyframe_updated_mutex);
+        keyframe_updated.wait( lck_update_keyframe );    //等到keyframes有更新
+        cout<<"keyframes are updated"<<endl;
+        boost::timer timer;
