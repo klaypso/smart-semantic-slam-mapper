@@ -119,4 +119,11 @@ void PoseGraph::mainLoop()
                 RGBDFrame::Ptr pf = keyframes[idx];
                 //cout<<"checking "<<nf->id<<" and "<<pf->id<<endl;
                 //  检测边是否存在
-         
+                if (isEdgeExist( nf->id, pf->id ))
+                {
+                    continue;
+                }
+
+                // 用pnp检测nf和pf之间是否可以计算一个边
+                PNP_INFORMATION info;
+               
