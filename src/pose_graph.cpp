@@ -114,4 +114,9 @@ void PoseGraph::mainLoop()
                 int idx = keyframes.size()-i-2;
                 if (idx < 0)
                 {
-                  
+                    break;
+                }
+                RGBDFrame::Ptr pf = keyframes[idx];
+                //cout<<"checking "<<nf->id<<" and "<<pf->id<<endl;
+                //  检测边是否存在
+         
