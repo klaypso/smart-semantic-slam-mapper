@@ -144,4 +144,9 @@ void PoseGraph::mainLoop()
 				cv::Mat motion;
 				motion = tracker->viso.getMotion();
 				Matrix_ M = Matrix_::eye(4);
-				for (int32
+				for (int32_t i=0; i<4; ++i)
+					for (int32_t j=0; j<4; ++j)
+						M.val[i][j] = motion.at<double>(i,j);
+				Matrix_ pose = M;
+				Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+				T(0,0) = pose.val[
