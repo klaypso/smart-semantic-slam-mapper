@@ -155,4 +155,10 @@ void PoseGraph::mainLoop()
 				T(3,0) = pose.val[3][0]; T(3,1) = pose.val[3][1]; T(3,2) = pose.val[3][2]; T(3,3) = pose.val[3][3];
 				info.T = T;
 			}
-			de
+			delete quadmatcher;
+		}
+                //continue;
+
+                // pnp成功，将pnp结果加到graph中
+                cout<<"solve pnp ok, generating an edge"<<endl;
+                g2o::EdgeSE
