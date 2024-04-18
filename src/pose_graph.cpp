@@ -166,4 +166,9 @@ void PoseGraph::mainLoop()
                 edge->vertices()[1] = dynamic_cast<g2o::VertexSE3*> (optimizer.vertex( pf->id ));
                 edge->setMeasurement( info.T );
                 edge->setInformation( Eigen::Matrix<double,6,6>::Identity() * 100);
-                edge->setRobustKernel( n
+                edge->setRobustKernel( new g2o::RobustKernelHuber() );
+                
+                edge->computeError();
+                cout<<"add local error "<<edge->chi2()<<endl;
+                localAccumulatedError += edge->chi2();
+                Ed
