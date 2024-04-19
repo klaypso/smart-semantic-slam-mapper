@@ -171,4 +171,9 @@ void PoseGraph::mainLoop()
                 edge->computeError();
                 cout<<"add local error "<<edge->chi2()<<endl;
                 localAccumulatedError += edge->chi2();
-                Ed
+                EdgeID id;
+                id[nf->id] = pf->id;
+                edges[ id ] = edge;
+                optimizer.addEdge( edge );
+                cout<<"edge has been added"<<endl;
+            }// end of for nearbyF
