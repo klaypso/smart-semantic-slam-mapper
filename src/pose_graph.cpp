@@ -176,4 +176,11 @@ void PoseGraph::mainLoop()
                 edges[ id ] = edge;
                 optimizer.addEdge( edge );
                 cout<<"edge has been added"<<endl;
-            }// end of for nearbyF
+            }// end of for nearbyFrames
+
+            // nf 的回环检测
+            looper->add( nf );
+            vector<RGBDFrame::Ptr>  possibleLoops = looper->getPossibleLoops( nf );
+
+            for ( auto pf:possibleLoops )
+    
