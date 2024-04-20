@@ -183,4 +183,8 @@ void PoseGraph::mainLoop()
             vector<RGBDFrame::Ptr>  possibleLoops = looper->getPossibleLoops( nf );
 
             for ( auto pf:possibleLoops )
-    
+            {
+                if ( isEdgeExist( nf->id, pf->id ) ) //这条边已经存在
+                    continue;
+                PNP_INFORMATION info;
+                if ( pnp->solvePnPLazy( pf, nf, info, fals
