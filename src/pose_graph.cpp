@@ -217,4 +217,6 @@ void PoseGraph::mainLoop()
 
 
                     g2o::EdgeSE3* edge = new g2o::EdgeSE3();
-                 
+                    edge->vertices()[0] = dynamic_cast<g2o::VertexSE3*> (optimizer.vertex( nf->id ));
+                    edge->vertices()[1] = dynamic_cast<g2o::VertexSE3*> (optimizer.vertex( pf->id ));
+           
