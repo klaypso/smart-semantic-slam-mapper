@@ -222,4 +222,10 @@ void PoseGraph::mainLoop()
                     edge->setMeasurement( info.T );
                     edge->setInformation( Eigen::Matrix<double,6,6>::Identity() * 100);
                     edge->setRobustKernel( new g2o::RobustKernelHuber() );
-                    //edges.p
+                    //edges.push_back( edge );
+                    EdgeID id;
+                    id[nf->id] = pf->id;
+                    edges[ id ] = edge;
+                    optimizer.addEdge( edge );
+
+                    edge->computeEr
