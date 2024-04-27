@@ -228,4 +228,11 @@ void PoseGraph::mainLoop()
                     edges[ id ] = edge;
                     optimizer.addEdge( edge );
 
-                    edge->computeEr
+                    edge->computeError();
+                    loopAccumulatedError += edge->chi2();
+                }
+            } // end of for possible loops
+        } // end of for new frames
+
+        // 处理优化
+        bool doOptimize = fal
