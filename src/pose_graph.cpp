@@ -243,4 +243,8 @@ void PoseGraph::mainLoop()
             {
                 optimizer.vertex(v)->setFixed(false);
             }
-          
+            optimizer.vertex( vertexIdx[0] )->setFixed(true);
+            cout<<"global optimization"<<endl;
+            optimizer.initializeOptimization();
+            boost::timer timer;
+            optimizer.optimize(10);
