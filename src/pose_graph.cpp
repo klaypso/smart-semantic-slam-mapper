@@ -269,4 +269,9 @@ void PoseGraph::mainLoop()
             {
                 optimizer.vertex( v )->setFixed( true );
             }
-            for ( int i=vertexIdx.size()-1; i>0 && i>
+            for ( int i=vertexIdx.size()-1; i>0 && i>vertexIdx.size()-6; i-- )
+            {
+                optimizer.vertex( vertexIdx[i] )->setFixed( false );
+            }
+            optimizer.vertex( vertexIdx[0] )->setFixed(true);
+            cout<<"local optimizatio
