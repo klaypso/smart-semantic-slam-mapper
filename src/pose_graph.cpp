@@ -251,3 +251,8 @@ void PoseGraph::mainLoop()
             cout << BOLDYELLOW << "Global optimization time [" << timer.elapsed()*1000.0 << "] " << "ms" << RESET << endl;
             // 重置keyframes和refFrame
             for ( auto kf : keyframes )
+            {
+                g2o::VertexSE3* v = dynamic_cast<g2o::VertexSE3*> ( optimizer.vertex( kf->id ) );
+                if ( v )
+                {
+                    kf->setTransform( v->estimat
