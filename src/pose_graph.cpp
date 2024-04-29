@@ -262,4 +262,11 @@ void PoseGraph::mainLoop()
             loopAccumulatedError  = 0;
             doOptimize = true;
         }
-        else if ( localAccumulatedError
+        else if ( localAccumulatedError > localAccuError )
+        {
+            // 处理局部优化
+            for ( auto v:vertexIdx )
+            {
+                optimizer.vertex( v )->setFixed( true );
+            }
+            for ( int i=vertexIdx.size()-1; i>0 && i>
