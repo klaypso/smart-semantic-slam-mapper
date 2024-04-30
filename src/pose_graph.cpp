@@ -274,4 +274,9 @@ void PoseGraph::mainLoop()
                 optimizer.vertex( vertexIdx[i] )->setFixed( false );
             }
             optimizer.vertex( vertexIdx[0] )->setFixed(true);
-            cout<<"local optimizatio
+            cout<<"local optimization"<<endl;
+            
+            optimizer.initializeOptimization();
+            boost::timer timer;
+            optimizer.optimize(10);
+            cout << BOLDYELLOW << "Local optimizat
