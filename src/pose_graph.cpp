@@ -283,4 +283,8 @@ void PoseGraph::mainLoop()
             // 重置
             for ( int i=keyframes.size()-1; i>0 && i>keyframes.size()-6; i-- )
             {
-                //cout<<"i="<<i
+                //cout<<"i="<<i<<", keyframe size="<<keyframes.size()<<endl;
+                g2o::VertexSE3* v = dynamic_cast<g2o::VertexSE3*> ( optimizer.vertex( keyframes[i]->id ) );
+                if ( v )
+                {
+                    keyframe
