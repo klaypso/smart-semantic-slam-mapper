@@ -287,4 +287,12 @@ void PoseGraph::mainLoop()
                 g2o::VertexSE3* v = dynamic_cast<g2o::VertexSE3*> ( optimizer.vertex( keyframes[i]->id ) );
                 if ( v )
                 {
-                    keyframe
+                    keyframes[i]->setTransform( v->estimate() );
+                }
+                
+            }
+            localAccumulatedError = 0;
+            doOptimize = true;
+        } // end of if loop accu
+        
+        if ( do
