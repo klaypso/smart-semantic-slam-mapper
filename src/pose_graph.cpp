@@ -279,4 +279,8 @@ void PoseGraph::mainLoop()
             optimizer.initializeOptimization();
             boost::timer timer;
             optimizer.optimize(10);
-            cout << BOLDYELLOW << "Local optimizat
+            cout << BOLDYELLOW << "Local optimization time [" << timer.elapsed()*1000.0 << "] " << "ms" << RESET << endl;
+            // 重置
+            for ( int i=keyframes.size()-1; i>0 && i>keyframes.size()-6; i-- )
+            {
+                //cout<<"i="<<i
