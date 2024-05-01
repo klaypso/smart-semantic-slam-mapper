@@ -295,4 +295,11 @@ void PoseGraph::mainLoop()
             doOptimize = true;
         } // end of if loop accu
         
-        if ( do
+        if ( doOptimize == true )
+        {
+            refFrame = keyframes.back();
+            tracker->adjust( refFrame );
+        }
+    }
+    cout<<"pose graph thread stops"<<endl;
+}
