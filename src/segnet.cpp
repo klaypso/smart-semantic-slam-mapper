@@ -14,4 +14,9 @@ Classifier::Classifier()
     //std::string model_file = "/home/relaybot/Desktop/slam3d/models/segnet_model_driving_webdemo.prototxt";
     //std::string trained_file = "/home/relaybot/Desktop/slam3d/models/segnet_weights_driving_webdemo.caffemodel";
     //std::string label_file = "/home/relaybot/Desktop/slam3d/models/semantic12.txt";
-    std::string model_fi
+    std::string model_file = "../models/segnet_model_driving_webdemo.prototxt";
+    std::string trained_file = "../models/segnet_weights_driving_webdemo.caffemodel";
+    std::string label_file = "../models/semantic12.txt";
+
+	/* Load the network. */
+	net
