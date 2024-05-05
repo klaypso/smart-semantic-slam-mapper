@@ -23,4 +23,9 @@ Classifier::Classifier()
 	net_->CopyTrainedLayersFrom(trained_file);
 
 	CHECK_EQ(net_->num_inputs(), 1) << "Network should have exactly one input.";
-	CHECK_EQ(net_->num_outputs(), 1) 
+	CHECK_EQ(net_->num_outputs(), 1) << "Network should have exactly one output.";
+
+	Blob<float>* input_layer = net_->input_blobs()[0];
+	num_channels_ = input_layer->channels();
+	CHECK(num_channels_ == 3 || num_channels_ == 1)
+		<
