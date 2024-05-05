@@ -35,4 +35,10 @@ Classifier::Classifier()
 	SetMean();
 
 	/* Load labels. */
-	std::ifstream labels(
+	std::ifstream labels(label_file.c_str());
+	CHECK(labels) << "Unable to open labels file " << label_file;
+	std::string line;
+	while (std::getline(labels, line))
+		labels_.push_back(string(line));
+
+	//Blob<float>* output_layer = net_->ou
