@@ -19,4 +19,8 @@ Classifier::Classifier()
     std::string label_file = "../models/semantic12.txt";
 
 	/* Load the network. */
-	net
+	net_.reset(new Net<float>(model_file, TEST));
+	net_->CopyTrainedLayersFrom(trained_file);
+
+	CHECK_EQ(net_->num_inputs(), 1) << "Network should have exactly one input.";
+	CHECK_EQ(net_->num_outputs(), 1) 
