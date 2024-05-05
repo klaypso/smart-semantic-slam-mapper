@@ -41,4 +41,11 @@ Classifier::Classifier()
 	while (std::getline(labels, line))
 		labels_.push_back(string(line));
 
-	//Blob<float>* output_layer = net_->ou
+	//Blob<float>* output_layer = net_->output_blobs()[0];
+}
+
+std::vector<int> Classifier::Argmax(const std::vector<float>& v, int N) 
+{
+	// specify capacity
+	Blob<float>* output_layer = net_->output_blobs()[0];
+	//int output_channels = output_lay
