@@ -65,4 +65,7 @@ std::vector<int> Classifier::Argmax(const std::vector<float>& v, int N)
 std::vector<Prediction> Classifier::Classify(const cv::Mat& img, int N) 
 {
 	std::vector<float> output = Predict(img);
-	st
+	std::vector<int> maxN = Argmax(output, N);
+	std::vector<Prediction> predictions;
+	predictions.reserve(input_geometry_.height * input_geometry_.width);
+	for (int i = 0; i < input_geometry_.height *
