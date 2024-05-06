@@ -56,4 +56,13 @@ std::vector<int> Classifier::Argmax(const std::vector<float>& v, int N)
 	for (int i = 0; i < output_size; ++i)
 	{
 		int idx = int(v[i]);
-		resu
+		result.push_back(idx); //N=1
+	}
+	return result;
+}
+
+/* Return the top N predictions. */
+std::vector<Prediction> Classifier::Classify(const cv::Mat& img, int N) 
+{
+	std::vector<float> output = Predict(img);
+	st
