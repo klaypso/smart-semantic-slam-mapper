@@ -48,4 +48,12 @@ std::vector<int> Classifier::Argmax(const std::vector<float>& v, int N)
 {
 	// specify capacity
 	Blob<float>* output_layer = net_->output_blobs()[0];
-	//int output_channels = output_lay
+	//int output_channels = output_layer->channels();
+	int output_size = output_layer->height() * output_layer->width();
+
+	std::vector<int> result;
+	result.reserve(output_size);
+	for (int i = 0; i < output_size; ++i)
+	{
+		int idx = int(v[i]);
+		resu
