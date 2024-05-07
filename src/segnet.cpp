@@ -78,4 +78,7 @@ std::vector<Prediction> Classifier::Classify(const cv::Mat& img, int N)
 }
 
 /* Load the mean file in binaryproto format. */
-void Classif
+void Classifier::SetMean() 
+{
+	//mean_ = cv::Mat(input_geometry_, CV_32FC3, cv::Scalar(104.00698793, 116.66876762, 122.67891434)); //BGR
+	mean_ = cv::Mat(input_geometry_, CV_32FC3, cv::Scalar(0, 0, 0)); //BGR
