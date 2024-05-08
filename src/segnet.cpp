@@ -82,3 +82,10 @@ void Classifier::SetMean()
 {
 	//mean_ = cv::Mat(input_geometry_, CV_32FC3, cv::Scalar(104.00698793, 116.66876762, 122.67891434)); //BGR
 	mean_ = cv::Mat(input_geometry_, CV_32FC3, cv::Scalar(0, 0, 0)); //BGR
+}
+
+std::vector<float> Classifier::Predict(const cv::Mat& img) 
+{
+	Blob<float>* input_layer = net_->input_blobs()[0];
+	input_layer->Reshape(1, num_channels_, input_geometry_.height, input_geometry_.width);
+	/* Forward dimensi
