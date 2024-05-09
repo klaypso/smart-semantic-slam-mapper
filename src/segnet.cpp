@@ -102,4 +102,11 @@ std::vector<float> Classifier::Predict(const cv::Mat& img)
 	Blob<float>* output_layer = net_->output_blobs()[0];
 	
 	const float* begin = output_layer->cpu_data();
-	const float* end = begin + output_layer->height() * output_layer-
+	const float* end = begin + output_layer->height() * output_layer->width() * output_layer->channels();
+
+	return std::vector<float>(begin, end);
+}
+
+/* Wrap the input layer of the network in separate cv::Mat objects
+ * (one per channel). This way we save one memcpy operation and we
+ * don't need 
