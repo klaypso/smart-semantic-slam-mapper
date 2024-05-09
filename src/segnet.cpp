@@ -109,4 +109,9 @@ std::vector<float> Classifier::Predict(const cv::Mat& img)
 
 /* Wrap the input layer of the network in separate cv::Mat objects
  * (one per channel). This way we save one memcpy operation and we
- * don't need 
+ * don't need to rely on cudaMemcpy2D. The last preprocessing
+ * operation will write the separate channels directly to the input
+ * layer. */
+void Classifier::WrapInputLayer(std::vector<cv::Mat>* input_channels) 
+{
+	Blob<float>* input_layer = net_->in
