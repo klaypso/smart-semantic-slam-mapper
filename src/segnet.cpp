@@ -88,4 +88,12 @@ std::vector<float> Classifier::Predict(const cv::Mat& img)
 {
 	Blob<float>* input_layer = net_->input_blobs()[0];
 	input_layer->Reshape(1, num_channels_, input_geometry_.height, input_geometry_.width);
-	/* Forward dimensi
+	/* Forward dimension change to all layers. */
+	net_->Reshape();
+
+	std::vector<cv::Mat> input_channels;
+	WrapInputLayer(&input_channels);
+
+	Preprocess(img, &input_channels);
+
+	net_->ForwardPrefilled();
