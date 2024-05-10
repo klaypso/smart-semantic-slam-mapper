@@ -114,4 +114,11 @@ std::vector<float> Classifier::Predict(const cv::Mat& img)
  * layer. */
 void Classifier::WrapInputLayer(std::vector<cv::Mat>* input_channels) 
 {
-	Blob<float>* input_layer = net_->in
+	Blob<float>* input_layer = net_->input_blobs()[0];
+
+	int width = input_layer->width();
+	int height = input_layer->height();
+	float* input_data = input_layer->mutable_cpu_data();
+	for (int i = 0; i < input_layer->channels(); ++i) 
+	{
+		cv::Mat chan
