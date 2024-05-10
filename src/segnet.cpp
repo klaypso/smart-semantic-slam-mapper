@@ -121,4 +121,12 @@ void Classifier::WrapInputLayer(std::vector<cv::Mat>* input_channels)
 	float* input_data = input_layer->mutable_cpu_data();
 	for (int i = 0; i < input_layer->channels(); ++i) 
 	{
-		cv::Mat chan
+		cv::Mat channel(height, width, CV_32FC1, input_data);
+		input_channels->push_back(channel);
+		input_data += width * height;
+	}
+}
+
+void Classifier::Preprocess(const cv::Mat& img, std::vector<cv::Mat>* input_channels) 
+{
+	/* Conv
