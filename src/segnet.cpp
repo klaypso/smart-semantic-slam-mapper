@@ -149,4 +149,10 @@ void Classifier::Preprocess(const cv::Mat& img, std::vector<cv::Mat>* input_chan
 		sample_resized = sample;
 
 	cv::Mat sample_float;
-	if (n
+	if (num_channels_ == 3)
+		sample_resized.convertTo(sample_float, CV_32FC3);
+	else
+		sample_resized.convertTo(sample_float, CV_32FC1);
+
+	cv::Mat sample_normalized;
+	cv::subtract(sample_float, mean_, sample
