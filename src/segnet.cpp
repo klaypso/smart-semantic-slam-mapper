@@ -139,3 +139,14 @@ void Classifier::Preprocess(const cv::Mat& img, std::vector<cv::Mat>* input_chan
 		cv::cvtColor(img, sample, CV_BGRA2BGR);
 	else if (img.channels() == 1 && num_channels_ == 3)
 		cv::cvtColor(img, sample, CV_GRAY2BGR);
+	else
+		sample = img;
+
+	cv::Mat sample_resized;
+	if (sample.size() != input_geometry_)
+		cv::resize(sample, sample_resized, input_geometry_);
+	else
+		sample_resized = sample;
+
+	cv::Mat sample_float;
+	if (n
