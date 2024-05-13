@@ -19,4 +19,6 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 	sgbm.minDisparity = 0; //Minimum possible disparity value
 	sgbm.uniquenessRatio = 10;
 	sgbm.speckleWindowSize = 100;
-	sgbm.preFilterCap = 63; //Truncatio
+	sgbm.preFilterCap = 63; //Truncation value for the prefiltered image pixels
+	sgbm.SADWindowSize = SADWindowSize > 0 ? SADWindowSize : 3;
+	sgbm.P1 = 4*cn*sgbm.SADWindowSize*sgbm.SADWindowSize; //controlling the disparity smoothness. P2 > P
