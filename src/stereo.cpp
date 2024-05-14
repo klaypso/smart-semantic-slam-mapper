@@ -24,4 +24,10 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 	sgbm.P1 = 4*cn*sgbm.SADWindowSize*sgbm.SADWindowSize; //controlling the disparity smoothness. P2 > P1
 	sgbm.P2 = 32*cn*sgbm.SADWindowSize*sgbm.SADWindowSize; //controlling the disparity smoothness.The larger the values are, the smoother the disparity is
 	sgbm.numberOfDisparities = numberOfDisparities;
-	sgbm.speckleRan
+	sgbm.speckleRange = 32; // devided by 16, 1 or 2 is good enough
+	sgbm.disp12MaxDiff = 1;
+
+	sgbm(img_L, img_R, disp);    
+/*
+	cv::Mat disp8; //scaling the value into 0-255
+	disp.convertTo(disp8, CV_8U, 255/(numberOfDisparities*16.));
