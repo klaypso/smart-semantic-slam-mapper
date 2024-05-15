@@ -45,4 +45,14 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
     int stype = disp.type();
     int dtype = CV_32FC3;
     //CV_Assert(stype == CV_16SC1);
-    xyz.create(disp.size(),CV_MAKETYPE(dty
+    xyz.create(disp.size(),CV_MAKETYPE(dtype,10));
+
+    //assign the effective elements of Q matrix
+    int rows = disp.rows;
+    int cols = disp.cols;
+
+    double px,py,pz;
+
+    //handling the missing values
+    double minDisparity = FLT_MAX;
+   
