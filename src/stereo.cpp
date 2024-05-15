@@ -31,3 +31,12 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 /*
 	cv::Mat disp8; //scaling the value into 0-255
 	disp.convertTo(disp8, CV_8U, 255/(numberOfDisparities*16.));
+	cv::Mat img_equalize,img_color;
+	cv::equalizeHist(disp8,img_equalize);
+	imshow("disp8", disp8);
+*/
+}
+
+
+void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
+                   
