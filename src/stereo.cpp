@@ -39,4 +39,10 @@ void calDisparity_SGBM(const cv::Mat& img_L, const cv::Mat& img_R, cv::Mat& disp
 
 
 void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
-                   
+                   const double f, const double cx, const double cy, const double b, ROI3D roi)
+{
+    //test
+    int stype = disp.type();
+    int dtype = CV_32FC3;
+    //CV_Assert(stype == CV_16SC1);
+    xyz.create(disp.size(),CV_MAKETYPE(dty
