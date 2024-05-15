@@ -55,4 +55,12 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
 
     //handling the missing values
     double minDisparity = FLT_MAX;
-   
+    cv::minMaxIdx(disp, &minDisparity, 0, 0, 0 );
+
+    std::vector<float> _dbuf(cols*3+1);
+
+    int x_max = roi.x_max;
+    int y_max = roi.y_max;
+    int z_max = roi.z_max;
+
+    for(int i = 0;i<row
