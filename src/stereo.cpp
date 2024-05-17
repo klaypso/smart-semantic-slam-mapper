@@ -63,4 +63,12 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
     int y_max = roi.y_max;
     int z_max = roi.z_max;
 
-    for(int i = 0;i<row
+    for(int i = 0;i<rows;i++)
+    {
+        const uchar* gray_ptr = img.ptr<uchar>(i);
+        const short* disp_ptr = disp.ptr<short>(i);
+        //float *dptr = dbuf;
+
+        float *dptr = xyz.ptr<float>(i);
+
+        fo
