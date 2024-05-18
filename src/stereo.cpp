@@ -84,4 +84,10 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
             {
                 px = 1.0/0.0;
                 py = 1.0/0.0;
-             
+                pz = 1.0/0.0;
+            }
+
+            if (fabs(px)>x_max || fabs(pz)>z_max || fabs(py)>y_max) //outside the ROI
+            {
+                dptr[j*10]     = (float)px; //X
+                dptr[j*10 + 
