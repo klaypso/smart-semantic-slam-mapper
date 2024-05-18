@@ -77,4 +77,11 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
             short d = disp_ptr[j];
             double pw = b/(1.0*static_cast<double>(d));
             px = ((static_cast<double>(j) -cx)*pw)*16.0f;
-  
+            py = ((static_cast<double>(i) -cy)*pw)*16.0f;
+            pz = (f*pw)*16.0f;
+
+            if (fabs(d-minDisparity) <= FLT_EPSILON )
+            {
+                px = 1.0/0.0;
+                py = 1.0/0.0;
+             
