@@ -71,4 +71,10 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
 
         float *dptr = xyz.ptr<float>(i);
 
-        fo
+        for (int j = 0; j < cols; j++)
+        {
+            uchar intensity = gray_ptr[j];
+            short d = disp_ptr[j];
+            double pw = b/(1.0*static_cast<double>(d));
+            px = ((static_cast<double>(j) -cx)*pw)*16.0f;
+  
