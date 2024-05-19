@@ -98,4 +98,9 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
                 dptr[j*10 + 6] = (int)intensity; //intensity
                 dptr[j*10 + 7] = 0;        //I_u
                 dptr[j*10 + 8] = 0;        //I_v
-                dp
+                dptr[j*10 + 9] = 0;        //motion mark
+            }
+            else //in the ROI
+            {
+                dptr[j*10]     = (float)px;      //X
+                dptr[j*10 + 1] = (float)py;  
