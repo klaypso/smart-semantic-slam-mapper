@@ -103,4 +103,8 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
             else //in the ROI
             {
                 dptr[j*10]     = (float)px;      //X
-                dptr[j*10 + 1] = (float)py;  
+                dptr[j*10 + 1] = (float)py;      //Y
+                dptr[j*10 + 2] = (float)pz;      //Z
+                dptr[j*10 + 3] = (float)j;       //u
+                dptr[j*10 + 4] = (float)i;       //v
+                dptr[j*10 + 5] = (float)d/16.0f;
