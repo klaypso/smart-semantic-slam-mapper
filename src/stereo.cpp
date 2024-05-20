@@ -140,4 +140,13 @@ void correct3DPoints(cv::Mat& xyz, ROI3D& roi_, const double& pitch1, const doub
       
       for(int i = 0;i < cols; i++)
       {
-        float xp = xyz_p
+        float xp = xyz_ptr[10*i];
+        float yp = xyz_ptr[10*i+1];
+        float zp = xyz_ptr[10*i+2];
+
+        int d = cvRound(xyz_ptr[10*i+5]);
+
+        if(d < 25 && d>0)
+        {
+            xyz_ptr[10*i] = xp;
+            xyz_pt
