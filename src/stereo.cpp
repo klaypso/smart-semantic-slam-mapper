@@ -121,4 +121,11 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
 
 /*
 ******this function rectify the coordinates of the 3D point cloud by the estimated pitch angle to the ground
-******xyz --- th
+******xyz --- the point cloud
+******pitch1 --- the first estimated pitch value
+ */
+void correct3DPoints(cv::Mat& xyz, ROI3D& roi_, const double& pitch1, const double& pitch2)
+{
+
+  double cos_p1 = cos(pitch1);
+  double sin_p1 = sin(pitch1);
