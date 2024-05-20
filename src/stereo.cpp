@@ -111,4 +111,14 @@ void triangulate10D(const cv::Mat& img, const cv::Mat& disp, cv::Mat& xyz,
                 dptr[j*10 + 6] = (int)intensity; //intensity
                 dptr[j*10 + 7] = 0;           //I_u
                 dptr[j*10 + 8] = 0;           //I_v
-                dptr[
+                dptr[j*10 + 9] = 0;           //motion mark
+            }
+        }
+    }
+}
+
+
+
+/*
+******this function rectify the coordinates of the 3D point cloud by the estimated pitch angle to the ground
+******xyz --- th
