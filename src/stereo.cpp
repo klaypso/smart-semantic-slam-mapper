@@ -129,3 +129,15 @@ void correct3DPoints(cv::Mat& xyz, ROI3D& roi_, const double& pitch1, const doub
 
   double cos_p1 = cos(pitch1);
   double sin_p1 = sin(pitch1);
+
+  int cols = xyz.cols;
+  int rows = xyz.rows;
+    
+  for(int j = 0; j < rows; j++)
+  {
+
+      float* xyz_ptr = xyz.ptr<float>(j);
+      
+      for(int i = 0;i < cols; i++)
+      {
+        float xp = xyz_p
