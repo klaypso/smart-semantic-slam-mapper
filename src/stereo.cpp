@@ -180,4 +180,13 @@ void correct3DPoints(cv::Mat& xyz, ROI3D& roi_, const double& pitch1, const doub
 
 }
 
-void setImageROI (cv::Mat&
+void setImageROI (cv::Mat& xyz, cv::Mat& roi_mask)
+{
+      vector<Mat> channels(8);
+      split(xyz, channels);
+      cv::Mat ch6;
+      ch6 = channels[6];
+
+      roi_mask.create(ch6.size(),CV_8UC1);
+      cv::convertScaleAbs(ch6,roi_mask);
+}
