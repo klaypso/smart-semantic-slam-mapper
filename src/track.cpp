@@ -42,4 +42,7 @@ void Tracker::estimateVO( )
     	orb->detectFeatures( currentFrame );
     
 	// VISO2
-	QuadFeatureMatch* quadmatch
+	QuadFeatureMatch* quadmatcher = new QuadFeatureMatch(currentFrame->img_lc,
+                                                         currentFrame->img_rc,
+                                                         currentFrame->img_lp,
+ 
