@@ -45,4 +45,6 @@ void Tracker::estimateVO( )
 	QuadFeatureMatch* quadmatcher = new QuadFeatureMatch(currentFrame->img_lc,
                                                          currentFrame->img_rc,
                                                          currentFrame->img_lp,
- 
+                                                         currentFrame->img_rp,
+                                                         currentFrame->semantic_cur_r,
+                                               
