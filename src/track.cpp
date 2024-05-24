@@ -35,4 +35,11 @@ void Tracker::initFirstFrame( )
     state = OK;
 }
 
-void Tracker::e
+void Tracker::estimateVO( )
+{    
+	// 初始值
+    	currentFrame->setTransform( speed * refFrames.back()->getTransform() );
+    	orb->detectFeatures( currentFrame );
+    
+	// VISO2
+	QuadFeatureMatch* quadmatch
