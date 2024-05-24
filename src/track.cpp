@@ -23,4 +23,16 @@ Eigen::Isometry3d Tracker::updateFrame( RGBDFrame::Ptr& newFrame )
     // state = LOST
 
     lostRecover();
-    return currentFrame->get
+    return currentFrame->getTransform();
+
+}
+
+void Tracker::initFirstFrame( )
+{
+    orb->detectFeatures( currentFrame );
+    refFrames.push_back(currentFrame);
+    speed = Eigen::Isometry3d::Identity();
+    state = OK;
+}
+
+void Tracker::e
