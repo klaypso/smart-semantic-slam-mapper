@@ -66,4 +66,9 @@ void Tracker::estimateVO( )
 		// moving
 		triangulate10D(currentFrame->img_lc,
                        currentFrame->disparity,
-                       
+                       currentFrame->xyz,
+                       calib_.f, calib_.c_x, calib_.c_y, calib_.b,
+                       roi_3d);
+
+		currentFrame->moving_mask = uv_disparity.Process(
+                currentFrame-
