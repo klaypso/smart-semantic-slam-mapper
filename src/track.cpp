@@ -47,4 +47,8 @@ void Tracker::estimateVO( )
                                                          currentFrame->img_lp,
                                                          currentFrame->img_rp,
                                                          currentFrame->semantic_cur_r,
-                                               
+                                                         currentFrame->semantic_pre_r,
+                                                         true);
+	quadmatcher->init(DET_GFTT,DES_SIFT);
+    //GFTT——cvGoodFeaturesToTrack 特征点
+	quadm
