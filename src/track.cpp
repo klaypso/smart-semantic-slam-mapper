@@ -59,4 +59,11 @@ void Tracker::estimateVO( )
 	if (viso.Process(*quadmatcher) == true)
 	{
 		//get ego-motion matrix (6DOF)
-		cv::M
+		cv::Mat motion;
+		motion = viso.getMotion();
+		//cout << "motion: " << motion << endl;
+
+		// moving
+		triangulate10D(currentFrame->img_lc,
+                       currentFrame->disparity,
+                       
