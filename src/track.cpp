@@ -51,4 +51,12 @@ void Tracker::estimateVO( )
                                                          true);
 	quadmatcher->init(DET_GFTT,DES_SIFT);
     //GFTT——cvGoodFeaturesToTrack 特征点
-	quadm
+	quadmatcher->detectFeature();
+	quadmatcher->circularMatching();
+
+	//visual odometry valid
+	bool success = false;
+	if (viso.Process(*quadmatcher) == true)
+	{
+		//get ego-motion matrix (6DOF)
+		cv::M
