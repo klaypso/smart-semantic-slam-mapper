@@ -78,3 +78,10 @@ void Tracker::estimateVO( )
                 currentFrame->roi_mask,
                 currentFrame->ground_mask, pitch1, pitch2);
 
+		//visual odometry
+		Matrix_ M = Matrix_::eye(4);
+		for (int32_t i=0; i<4; ++i)
+			for (int32_t j=0; j<4; ++j)
+				M.val[i][j] = motion.at<double>(i,j);
+		poseChanged = poseChanged * Matrix_::inv(M);
+		pos
