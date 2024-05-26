@@ -71,4 +71,10 @@ void Tracker::estimateVO( )
                        roi_3d);
 
 		currentFrame->moving_mask = uv_disparity.Process(
-                currentFrame-
+                currentFrame->img_lc, //左图
+                currentFrame->disparity, //SGBM得来的深度图
+                viso,
+                currentFrame->xyz,
+                currentFrame->roi_mask,
+                currentFrame->ground_mask, pitch1, pitch2);
+
