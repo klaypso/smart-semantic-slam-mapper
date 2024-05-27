@@ -102,4 +102,15 @@ void Tracker::estimateVO( )
 		{
 			key_pose = key_pose * poseChanged;
 			poseChanged = Matrix_::eye(4);
-			
+			key_detected = true;
+			cout << "Key_frame[" << n << "]" << " is detected." << endl;
+		}
+*/
+		success = true;
+	}
+	delete quadmatcher;
+	
+	if (!success)
+	{
+		cntLost ++;
+		if (cntLost > max_lost_f
