@@ -84,4 +84,12 @@ void Tracker::estimateVO( )
 			for (int32_t j=0; j<4; ++j)
 				M.val[i][j] = motion.at<double>(i,j);
 		poseChanged = poseChanged * Matrix_::inv(M);
-		pos
+		pose = pose * Matrix_::inv(M);
+/*	
+		// gt
+		cv::Mat gtpose;
+		Matrix_ gt_ = Matrix_::eye(4); 
+		pd.getData( n+1, gtpose );
+		for (int32_t i=0; i<4; ++i)
+			for (int32_t j=0; j<4; ++j)
+				gt_.val[i][j] = gtpose.at<double>(i,j);
