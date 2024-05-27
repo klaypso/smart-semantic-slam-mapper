@@ -93,3 +93,13 @@ void Tracker::estimateVO( )
 		for (int32_t i=0; i<4; ++i)
 			for (int32_t j=0; j<4; ++j)
 				gt_.val[i][j] = gtpose.at<double>(i,j);
+		//pose = gt_;
+		gtpose_ = gt_;
+
+		// key_frame
+		float rt_change = poseChanged.l2norm();
+		if (rt_change > RT_Threshold)
+		{
+			key_pose = key_pose * poseChanged;
+			poseChanged = Matrix_::eye(4);
+			
