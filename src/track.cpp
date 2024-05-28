@@ -113,4 +113,12 @@ void Tracker::estimateVO( )
 	if (!success)
 	{
 		cntLost ++;
-		if (cntLost > max_lost_f
+		if (cntLost > max_lost_frame)
+		{
+		    state = LOST;
+		}
+        	return;
+	}
+	
+	Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+	T(0,0) = pose.val[0][0]; T(0,1) = pose.val[0][1]; T(0,2) = pose.val[0][2]; T(0,3) = pose.val[
