@@ -149,4 +149,9 @@ void Tracker::trackRefFrame()
     vector<cv::Point2f> img;
     for (auto pFrame: refFrames)
     {
-        vector<cv::DMatch> matche
+        vector<cv::DMatch> matches = orb->match( pFrame, currentFrame );
+        vector<cv::DMatch>  validMatches;
+        Eigen::Isometry3d invPose = pFrame->getTransform().inverse();
+        for (auto m:matches)
+        {
+            cv::Point3f pObj = p
