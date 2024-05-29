@@ -129,3 +129,16 @@ void Tracker::estimateVO( )
 	cntLost = 0;
 	speed = T * lastPose.inverse();
 	lastPose = currentFrame->getTransform();
+	refFrames.push_back( currentFrame );
+	while (refFrames.size() > refFramesSize )
+	{
+		refFrames.pop_front();
+	}
+}
+
+
+void Tracker::trackRefFrame()
+{
+    //adjustMutex.lock();
+    // 初始值
+    currentFrame->setTransform( speed * refFrames
