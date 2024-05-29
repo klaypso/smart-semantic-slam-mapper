@@ -154,4 +154,8 @@ void Tracker::trackRefFrame()
         Eigen::Isometry3d invPose = pFrame->getTransform().inverse();
         for (auto m:matches)
         {
-            cv::Point3f pObj = p
+            cv::Point3f pObj = pFrame->features[m.queryIdx].position;
+            if (pObj == cv::Point3f(0,0,0))
+                continue;
+            Eigen::Vector4d vec = invPose * Eigen::Vector4d(pObj.x, pObj.y, pObj.z,1 );
+            o
