@@ -141,4 +141,12 @@ void Tracker::trackRefFrame()
 {
     //adjustMutex.lock();
     // 初始值
-    currentFrame->setTransform( speed * refFrames
+    currentFrame->setTransform( speed * refFrames.back()->getTransform() );
+    orb->detectFeatures( currentFrame );
+    
+    // build local BA
+    vector<cv::Point3f> obj;
+    vector<cv::Point2f> img;
+    for (auto pFrame: refFrames)
+    {
+        vector<cv::DMatch> matche
