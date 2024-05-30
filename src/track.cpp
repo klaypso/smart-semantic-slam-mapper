@@ -158,4 +158,11 @@ void Tracker::trackRefFrame()
             if (pObj == cv::Point3f(0,0,0))
                 continue;
             Eigen::Vector4d vec = invPose * Eigen::Vector4d(pObj.x, pObj.y, pObj.z,1 );
-            o
+            obj.push_back( cv::Point3f(vec(0), vec(1), vec(2) ) );
+            img.push_back( currentFrame->features[m.trainIdx].keypoint.pt );
+        }
+    }
+    
+    if ( img.size() < 15 )
+    {
+        cntLost ++;
