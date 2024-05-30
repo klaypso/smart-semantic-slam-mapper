@@ -166,3 +166,13 @@ void Tracker::trackRefFrame()
     if ( img.size() < 15 )
     {
         cntLost ++;
+        if (cntLost > max_lost_frame)
+        {
+            state = LOST;
+        }
+        return;
+    }
+    
+    vector<int> inlierIndex;
+    Eigen::Isometry3d T = speed * lastPose;
+    bool b 
