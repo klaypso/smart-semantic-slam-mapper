@@ -182,4 +182,13 @@ void Tracker::trackRefFrame()
         if (cntLost > max_lost_frame)
         {
             state = LOST;
-   
+        }
+        return;
+    }
+    
+    currentFrame->setTransform( T );
+    cntLost = 0;
+    speed = T * lastPose.inverse();
+    lastPose = currentFrame->getTransform();
+    refFrames.push_back( currentFrame );
+    w
