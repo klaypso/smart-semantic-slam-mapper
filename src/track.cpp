@@ -175,4 +175,11 @@ void Tracker::trackRefFrame()
     
     vector<int> inlierIndex;
     Eigen::Isometry3d T = speed * lastPose;
-    bool b 
+    bool b = pnp->solvePnP( img, obj, currentFrame->camera, inlierIndex, T );
+    if ( inlierIndex.size() < 15 )
+    {
+        cntLost ++;
+        if (cntLost > max_lost_frame)
+        {
+            state = LOST;
+   
