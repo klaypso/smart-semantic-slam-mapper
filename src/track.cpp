@@ -191,4 +191,14 @@ void Tracker::trackRefFrame()
     speed = T * lastPose.inverse();
     lastPose = currentFrame->getTransform();
     refFrames.push_back( currentFrame );
-    w
+    while (refFrames.size() > refFramesSize )
+    {
+        refFrames.pop_front();
+    }
+    
+    //cout<<"speed="<<endl<<speed.matrix()<<endl;
+}
+
+void    Tracker::lostRecover()
+{
+    cout<<"trying to recover from lost"<<endl;
