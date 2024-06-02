@@ -202,3 +202,8 @@ void Tracker::trackRefFrame()
 void    Tracker::lostRecover()
 {
     cout<<"trying to recover from lost"<<endl;
+    orb->detectFeatures( currentFrame );
+    currentFrame->setTransform( refFrames.back()->getTransform() );
+    refFrames.clear();
+    refFrames.push_back( currentFrame );
+   
