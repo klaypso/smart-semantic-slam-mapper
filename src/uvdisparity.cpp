@@ -318,3 +318,205 @@ void UVDisparity::calVDisparity(const cv::Mat& img_dis,cv::Mat& xyz)
   int xyz_rows = xyz.rows;
 
   float scale = 255*1.0f/xyz.cols;
+
+  //assign the int matrix to uchar matrix for visualize
+  v_dis_.create(v_dis_int.size(),CV_8UC1);
+  for(int i = 0;i < v_rows;i++)
+  {
+      //const uchar* gray_ptr = img_rgb.ptr<uchar>(i);
+      const int* v_ptr = v_dis_int.ptr<int>(i);
+      uchar* v_char_ptr = v_dis_.ptr<uchar>(i);
+
+      for(int j = 0; j < v_cols; j++)
+      {
+          int v = v_ptr[j];
+          v_char_ptr[j] = v*scale;
+      }
+    }
+
+  //assign for visualize
+  cvtColor(v_dis_, v_dis_show, CV_GRAY2BGR);
+
+//  cv::imshow("v_dis",v_dis_uchar);
+//  cv::waitKey(0);
+
+  //assign to xyz 10D matrix
+  for(int j = 0; j < xyz_rows; j++)
+  {
+      float* xyz_ptr = xyz.ptr<float>(j);
+      for(int i = 0;i < xyz_cols; i++)
+      {
+
+           int v = cvRound(xyz_ptr[10*i+4]);
+           int d = cvRound(xyz_ptr[10*i+5]);
+
+           if(d>0)
+           {
+             int v_i = v_dis_.at<int>(v,d);
+             xyz_ptr[10*i+8] = (float)v_i;
+           }
+           else
+           {
+             xyz_ptr[10*i+8] = 0;
+           }
+
+      }
+  }
+
+
+}
+
+vector<cv::Mat> UVDisparity::Pitch_Classify(cv::Mat &xyz,cv::Mat& ground_mask)
+{
+   vector<cv::Mat> pitch_measure;
+
+   cv::Mat pitch1;
+   pitch1.create(1,1,CV_32F);
+   cv::Mat pitch2;
+   pitch2.create(1,1,CV_32F);
+
+   cv::Mat bin,dst,dst1;
+
+  GaussianBlur(v_dis_,dst,Size(3,3),0,0);
+
+  Mat element = getStructuringElement(MORPH_RECT,Size(3,3),Point(1,1));
+  erode(dst,dst1,element);
+
+  cv::threshold(dst1,bin,0,255,THRESH_OTSU);
+
+  //cv::imshow("color",bin);
+  //cv::waitKey(0);
+    
+  std::vector<Point> pt_list;
+  //select the points to estimate line function
+  for(int i = 26;i < bin.cols;i++)
+  {
+    for(int j = bin.rows-1;j>=0;j--)
+    {
+      int v = bin.at<uchar>(j,i);
+      if(v == 255)
+      {
+        //cout<<"the lowest pixel is: "<<i<<","<<j<<endl;
+        pt_list.push_back(cv::Point(i,j));
+
+        for(int k = j; k > max(j-30,0); k--)
+        {
+            int v_a = bin.at<uchar>(k,i);
+            if(v_a == 255)
+            {
+                pt_list.push_back(cv::Point(i,k));
+
+            }
+        }
+        
+        break;
+      }
+    }
+  }
+
+  std::vector<Point> pt_list2;
+  //select the points to estimate line function
+  for(int i = 12;i < 26;i++)
+  {
+    for(int j = bin.rows-1;j>=0;j--)
+    {
+      int v = bin.at<uchar>(j,i);
+      if(v == 255)
+      {
+        pt_list2.push_back(cv::Point(i,j));
+        break;
+      }
+    }
+  }
+
+  //cout<<"length of list is: "<<pt_list.size()<<endl;
+  Vec4f line1;
+  Vec4f line2;
+
+
+  //fitting line function
+  cv::fitLine(pt_list,line1,CV_DIST_L2,0,0.01,0.01);
+  cv::fitLine(pt_list,line2,CV_DIST_L2,0,0.01,0.01);
+  //cv::fitLine(pt_list2,line2,CV_DIST_L2,0,0.01,0.01);
+
+  float a = line1[0];float b = line1[1];
+  int x0 = cvRound(line1[2]);int y0 = cvRound(line1[3]);
+
+  float a2 = line2[0];float b2 = line2[1];
+  int x2 = cvRound(line2[2]);int y2 = cvRound(line2[3]);
+
+  double V_C = y0 - (b/a)*x0;
+  double V_C2 = y2 - (b2/a2)*x2;
+
+
+  vector<Vec4i> lines;
+  double V_0 = calib_.c_y;
+  double F = calib_.f;
+
+  double theta = atan((V_0-V_C)/F);
+  double theta2 = atan((V_0-V_C2)/F);
+
+  cv::line(v_dis_show,cv::Point(0,(b2/a2)*0+V_C2),cv::Point(26,(b2/a2)*26+V_C2),cv::Scalar(0,255,0),2,8);
+  cv::line(v_dis_show,cv::Point(0,(b2/a2)*0+V_C2-20),cv::Point(26,(b2/a2)*26+V_C2-20),cv::Scalar(0,0,255),2,8);
+
+  cv::line(v_dis_show,cv::Point(26,(b/a)*26+V_C),cv::Point(100,(b/a)*100+V_C),cv::Scalar(255,0,0),2,8);
+  cv::line(v_dis_show,cv::Point(26,(b/a)*26+V_C-20),cv::Point(100,(b/a)*100+V_C-20),cv::Scalar(0,0,255),2,8);
+
+  pitch1.at<float>(0)=theta;
+  pitch2.at<float>(0)=theta2;
+
+  //classify the points on ground plane and obstacles with respect to its distance to the line in V-disparity
+ int xyz_cols = xyz.cols;
+ int xyz_rows = xyz.rows;
+
+  for(int j = 0; j < xyz_rows; j++)
+  {
+
+      float* xyz_ptr = xyz.ptr<float>(j);
+      for(int i = 0;i < xyz_cols; i++)
+      {
+
+           float v = xyz_ptr[10*i + 4];
+           float d = xyz_ptr[10*i + 5];
+           int intensity = cvRound(xyz_ptr[10*i + 6]);
+           float distance = (v-(b/a)*d-V_C);
+
+           if(d > 26.0f)
+           {
+               if(distance > -14.0f)
+               {
+                   xyz_ptr[10*i+9] = 0.0f;//make the intensity as zero
+               }
+               else
+               {
+                   xyz_ptr[10*i+9] = abs(intensity);
+               }
+           }
+           else if(d < 26.1f && d > 8.0f)
+           {
+               if(distance > -14.0f)
+               {
+                   xyz_ptr[10*i+9] = 0.0f;//make the intensity as zero
+               }
+               else
+               {
+                   xyz_ptr[10*i+9] = abs(intensity);
+               }
+           }
+           else
+           {
+               xyz_ptr[10*i+9] = 0;//make the intensity as zero
+           }
+
+      }
+
+
+  }
+
+
+  vector<Mat> channels(8);
+//  split img:
+  split(xyz, channels);
+//  get the channels (dont forget they follow BGR order in OpenCV)
+  cv::Mat ch9 = channels[9];
+  ground_mask.create(ch9.size(),CV_8UC1);
