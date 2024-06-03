@@ -206,4 +206,7 @@ void    Tracker::lostRecover()
     currentFrame->setTransform( refFrames.back()->getTransform() );
     refFrames.clear();
     refFrames.push_back( currentFrame );
-   
+    state = OK;
+    cntLost = 0;
+    cout<<"recover returned"<<endl;
+}
