@@ -941,3 +941,64 @@ void UVDisparity::segmentation(const cv::Mat& disparity, const cv::Mat& img_L,
           for(int k = 0; k < disparity.rows; k++)
           {
             short dis_raw = disparity.at<short>(k,j);
+            double dis_real = (dis_raw/16.0f);
+
+            if(abs(dis_real - i) < eps)
+            {
+              cv::Point pt(j,k);
+              if(isInMask(j,k,roi_mask))
+              {
+                mask_moving.at<uchar>(k,j)=255;
+              }
+            }
+          }
+        }
+      }
+    }
+
+
+
+  }
+
+  img_show.copyTo(img_show_last,mask_moving);
+}
+
+
+//judge if a mat is all zero or not
+bool UVDisparity::isAllZero(const cv::Mat& mat)
+{
+   for(int i = 0;i<mat.rows;i++)
+    {
+      const uchar* mat_ptr = mat.ptr<uchar>(i);
+
+      for(int j = 0; j<mat.cols; j++)
+      {
+        int d = mat_ptr[j];
+        if(d!=0) return false;
+      }
+
+    }
+
+   return true;
+}
+
+bool UVDisparity::isInMask(int u, int v, const cv::Mat& roi_mask)
+{
+  if(roi_mask.at<uchar>(v,u) >0) return true;
+  else return false;
+}
+
+
+double UVDisparity::sigmoid(double t,double scale,double range, int mode = 1)
+{
+  double result;
+  if(mode == 1)
+  {
+    result = range*1.0f/(1+exp(t*scale));//flipped sigmoid function
+  }
+  else if(mode == 0)
+  {
+    result = range*1.0f/(1+exp(-1.0*t*scale));//standard sigmoid function
+  }
+  return result;
+}
