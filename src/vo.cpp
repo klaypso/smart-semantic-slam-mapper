@@ -17,4 +17,15 @@ VisualOdometry::VisualOdometry (parameters param) : param(param) {
   srand(0);
 }
 
-Vis
+VisualOdometry::~VisualOdometry () {
+}
+
+bool VisualOdometry::updateMotion ()
+{
+  double time = (double)cv::getTickCount();
+
+  // estimate motion
+  vector<double> tr_delta = estimateMotion(quadmatches);
+  
+  // on failure
+  if 
