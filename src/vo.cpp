@@ -28,4 +28,10 @@ bool VisualOdometry::updateMotion ()
   vector<double> tr_delta = estimateMotion(quadmatches);
   
   // on failure
-  if 
+  if (tr_delta.size()!=6)
+    return false;
+  
+  // set transformation matrix (previous to current frame)
+  Tr_delta = transformationVectorToMatrix(tr_delta);
+
+  time = ((double)cv::getTickCount() - time)/cv::getTickFrequen
