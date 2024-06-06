@@ -55,4 +55,12 @@ cv::Mat VisualOdometry::transformationVectorToMatrix (std::vector<double> tr) {
   // precompute sine/cosine
   double sx = sin(rx);
   double cx = cos(rx);
-  double sy = 
+  double sy = sin(ry);
+  double cy = cos(ry);
+  double sz = sin(rz);
+  double cz = cos(rz);
+
+  // compute transformation
+  cv::Mat Tr(4,4,CV_64FC1,cv::Scalar(0));
+
+  Tr.at<double>(0,0) = +cy*cz;Tr.at<double>(0,1) = -c
