@@ -22,4 +22,12 @@ bool VisualOdometryStereo::Process(QuadFeatureMatch& quadmatcher)
     quadmatches.clear();
     int num = quadmatcher.quadmatches.size();
 
-    //copy to visual odo
+    //copy to visual odometry
+    for(int i = 0; i < num; i++)
+    {
+        pmatch tmp;
+        tmp.u1c = quadmatcher.quadmatches[i].u1c;
+        tmp.v1c = quadmatcher.quadmatches[i].v1c;
+
+        tmp.u2c = quadmatcher.quadmatches[i].u2c;
+     
