@@ -30,4 +30,10 @@ bool VisualOdometryStereo::Process(QuadFeatureMatch& quadmatcher)
         tmp.v1c = quadmatcher.quadmatches[i].v1c;
 
         tmp.u2c = quadmatcher.quadmatches[i].u2c;
-     
+        tmp.v2c = quadmatcher.quadmatches[i].v2c;
+
+        tmp.u1p = quadmatcher.quadmatches[i].u1p;
+        tmp.v1p = quadmatcher.quadmatches[i].v1p;
+
+        tmp.u2p = quadmatcher.quadmatches[i].u2p;
+ 
