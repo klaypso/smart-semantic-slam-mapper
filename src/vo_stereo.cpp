@@ -12,4 +12,14 @@ VisualOdometryStereo::VisualOdometryStereo (parameters param) : param(param), Vi
 {
 }
 
-VisualOd
+VisualOdometryStereo::~VisualOdometryStereo() {
+}
+
+
+bool VisualOdometryStereo::Process(QuadFeatureMatch& quadmatcher)
+{
+
+    quadmatches.clear();
+    int num = quadmatcher.quadmatches.size();
+
+    //copy to visual odo
