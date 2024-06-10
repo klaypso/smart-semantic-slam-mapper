@@ -36,4 +36,12 @@ bool VisualOdometryStereo::Process(QuadFeatureMatch& quadmatcher)
         tmp.v1p = quadmatcher.quadmatches[i].v1p;
 
         tmp.u2p = quadmatcher.quadmatches[i].u2p;
- 
+        tmp.v2p = quadmatcher.quadmatches[i].v2p;
+
+        quadmatches.push_back(tmp);
+    }
+
+    return updateMotion();
+}
+
+vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadm
