@@ -44,4 +44,12 @@ bool VisualOdometryStereo::Process(QuadFeatureMatch& quadmatcher)
     return updateMotion();
 }
 
-vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadm
+vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadmatches) {
+
+  // return value
+  bool success = true;
+
+  // compute minimum distance for RANSAC samples
+  double width=0,height=0;
+
+  for (vector<pmatch>::iterator it=quadmatches.begin(); it!=quadmatches.end(); it++)
