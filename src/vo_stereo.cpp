@@ -52,4 +52,12 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   // compute minimum distance for RANSAC samples
   double width=0,height=0;
 
-  for (vector<pmatch>::iterator it=quadmatches.begin(); it!=quadmatches.end(); it++)
+  for (vector<pmatch>::iterator it=quadmatches.begin(); it!=quadmatches.end(); it++) {
+    if (it->u1c>width)  width  = it->u1c;
+    if (it->v1c>height) height = it->v1c;
+  }
+
+  // get number of matches
+  int N  = quadmatches.size();
+  if (N<6)
+    return vector<double>()
