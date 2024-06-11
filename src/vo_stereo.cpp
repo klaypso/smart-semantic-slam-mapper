@@ -74,4 +74,11 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   // project matches of previous image into 3d
   for (int i=0; i<N; i++) {
     double d = max(quadmatches[i].u1p - quadmatches[i].u2p,1.0f);
-    X[i] = (quadmatches[
+    X[i] = (quadmatches[i].u1p-param.calib.cu)*param.base/d;
+    Y[i] = (quadmatches[i].v1p-param.calib.cv)*param.base/d;
+    Z[i] = param.calib.f*param.base/d;
+  }
+
+  // loop variables
+  vector<double> tr_delta;
+  vector<double> 
