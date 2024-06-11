@@ -69,4 +69,9 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   J          = new double[4*N*6];
   p_predict  = new double[4*N];
   p_observe  = new double[4*N];
-  p_residual =
+  p_residual = new double[4*N];
+
+  // project matches of previous image into 3d
+  for (int i=0; i<N; i++) {
+    double d = max(quadmatches[i].u1p - quadmatches[i].u2p,1.0f);
+    X[i] = (quadmatches[
