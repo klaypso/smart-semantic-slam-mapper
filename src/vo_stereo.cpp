@@ -60,4 +60,13 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   // get number of matches
   int N  = quadmatches.size();
   if (N<6)
-    return vector<double>()
+    return vector<double>();
+
+  // allocate dynamic memory
+  X          = new double[N];
+  Y          = new double[N];
+  Z          = new double[N];
+  J          = new double[4*N*6];
+  p_predict  = new double[4*N];
+  p_observe  = new double[4*N];
+  p_residual =
