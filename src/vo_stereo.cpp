@@ -81,4 +81,14 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
 
   // loop variables
   vector<double> tr_delta;
-  vector<double> 
+  vector<double> tr_delta_curr;
+  tr_delta_curr.resize(6);
+
+  // clear parameter vector
+  inliers.clear();
+
+  // initial RANSAC estimate
+  for (int k=0;k<param.ransac_iters;k++) {
+
+    // draw random sample set
+    vector<int> active = getRandomSam
