@@ -91,4 +91,12 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   for (int k=0;k<param.ransac_iters;k++) {
 
     // draw random sample set
-    vector<int> active = getRandomSam
+    vector<int> active = getRandomSample(N,3);
+
+    // clear parameter vector
+    for (int i=0; i<6; i++)
+      tr_delta_curr[i] = 0;
+
+    // minimize reprojection errors
+    VisualOdometryStereo::result result = UPDATED;
+   
