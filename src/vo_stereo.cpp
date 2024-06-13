@@ -99,4 +99,11 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
 
     // minimize reprojection errors
     VisualOdometryStereo::result result = UPDATED;
-   
+    int iter=0;
+    while (result==UPDATED) {
+      result = updateParameters(quadmatches,active,tr_delta_curr,1,1e-6);
+      if (iter++ > 20 || result==CONVERGED)
+        break;
+    }
+
+    // overwrite best parameters if we have
