@@ -111,4 +111,14 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
       vector<int> inliers_curr = getInlier(quadmatches,tr_delta_curr);
       if (inliers_curr.size()>inliers.size()) {
         inliers = inliers_curr;
-        tr_delta
+        tr_delta = tr_delta_curr;
+      }
+    }
+  }
+
+  // final optimization (refinement)
+  if (inliers.size()>=6) {
+    int iter=0;
+    VisualOdometryStereo::result result = UPDATED;
+    while (result==UPDATED) {
+      result = updateParamete
