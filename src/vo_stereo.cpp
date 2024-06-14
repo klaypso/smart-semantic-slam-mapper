@@ -121,4 +121,15 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
     int iter=0;
     VisualOdometryStereo::result result = UPDATED;
     while (result==UPDATED) {
-      result = updateParamete
+      result = updateParameters(quadmatches,inliers,tr_delta,1,1e-8);
+      if (iter++ > 100 || result==CONVERGED)
+        break;
+    }
+
+    // not converged
+    if (result!=CONVERGED)
+      success = false;
+
+  // not enough inliers
+  } else {
+    su
