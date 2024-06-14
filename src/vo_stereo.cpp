@@ -106,4 +106,9 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
         break;
     }
 
-    // overwrite best parameters if we have
+    // overwrite best parameters if we have more inliers
+    if (result!=FAILED) {
+      vector<int> inliers_curr = getInlier(quadmatches,tr_delta_curr);
+      if (inliers_curr.size()>inliers.size()) {
+        inliers = inliers_curr;
+        tr_delta
