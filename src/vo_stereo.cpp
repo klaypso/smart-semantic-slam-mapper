@@ -132,4 +132,16 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
 
   // not enough inliers
   } else {
-    su
+    success = false;
+  }
+
+//  //allocate the inlier matches and outlier matches
+  getInOutMatches(quadmatches,inliers);
+
+
+  // release dynamic memory
+  delete X;delete Y;
+  delete Z;delete J;
+  delete p_predict;
+  delete p_observe;
+  delete p_
