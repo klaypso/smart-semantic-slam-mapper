@@ -144,4 +144,17 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
   delete Z;delete J;
   delete p_predict;
   delete p_observe;
-  delete p_
+  delete p_residual;
+
+  // parameter estimate succeeded?
+  if (success) return tr_delta;
+  else         return vector<double>();
+}
+
+
+
+
+
+vector<int> VisualOdometryStereo::getInlier(std::vector<pmatch>& quadmatches,vector<double> &tr) {
+
+  
