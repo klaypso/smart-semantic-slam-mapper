@@ -163,4 +163,10 @@ vector<int> VisualOdometryStereo::getInlier(std::vector<pmatch>& quadmatches,vec
     active.push_back(i);
 
   // extract observations and compute predictions
-  computeObservations(qua
+  computeObservations(quadmatches,active);
+  computeResidualsAndJacobian(tr,active);
+
+  // compute inliers
+  vector<int> inliers;
+  for (int i=0; i<(int)quadmatches.size(); i++)
+    if (pow(p_observe[4*i+0]-p_predict[4*i+0],2)+pow(p_observe[4*
