@@ -169,4 +169,13 @@ vector<int> VisualOdometryStereo::getInlier(std::vector<pmatch>& quadmatches,vec
   // compute inliers
   vector<int> inliers;
   for (int i=0; i<(int)quadmatches.size(); i++)
-    if (pow(p_observe[4*i+0]-p_predict[4*i+0],2)+pow(p_observe[4*
+    if (pow(p_observe[4*i+0]-p_predict[4*i+0],2)+pow(p_observe[4*i+1]-p_predict[4*i+1],2) +
+        pow(p_observe[4*i+2]-p_predict[4*i+2],2)+pow(p_observe[4*i+3]-p_predict[4*i+3],2) < param.inlier_threshold*param.inlier_threshold)
+      inliers.push_back(i);
+  return inliers;
+}
+
+
+
+
+void VisualOd
