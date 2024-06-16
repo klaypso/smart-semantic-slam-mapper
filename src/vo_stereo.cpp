@@ -157,4 +157,10 @@ vector<double> VisualOdometryStereo::estimateMotion (std::vector<pmatch> &quadma
 
 vector<int> VisualOdometryStereo::getInlier(std::vector<pmatch>& quadmatches,vector<double> &tr) {
 
-  
+  // mark all observations active
+  vector<int> active;
+  for (int i=0; i<(int)quadmatches.size(); i++)
+    active.push_back(i);
+
+  // extract observations and compute predictions
+  computeObservations(qua
