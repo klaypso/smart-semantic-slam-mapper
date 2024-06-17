@@ -201,4 +201,12 @@ void VisualOdometryStereo::getInOutMatches(std::vector<pmatch>& quadmatches, vec
 }
 
 VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<pmatch>& quadmatches,vector<int> &active,
-                                                                       vector<double> &t
+                                                                       vector<double> &tr,double step_size,double eps)
+{
+
+  // we need at least 3 observations
+  if (active.size()<3)
+    return FAILED;
+
+  // extract observations and compute predictions
+  computeObservations(quadmatches,active)
