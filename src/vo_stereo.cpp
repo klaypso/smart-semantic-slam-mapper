@@ -185,4 +185,19 @@ void VisualOdometryStereo::getInOutMatches(std::vector<pmatch>& quadmatches, vec
   quadmatches_inlier.clear();
   quadmatches_outlier.clear();
 
-  for(int i = 0; i < numMatched; i++
+  for(int i = 0; i < numMatched; i++)
+  {
+    if(std::find(inliers.begin(),inliers.end(),i)!=inliers.end())
+    {
+      quadmatches_inlier.push_back(quadmatches[i]);
+    }
+    else
+    {
+      quadmatches_outlier.push_back(quadmatches[i]);
+    }
+
+  }
+
+}
+
+VisualOdome
