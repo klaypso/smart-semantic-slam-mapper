@@ -200,4 +200,5 @@ void VisualOdometryStereo::getInOutMatches(std::vector<pmatch>& quadmatches, vec
 
 }
 
-VisualOdome
+VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<pmatch>& quadmatches,vector<int> &active,
+                                                                       vector<double> &t
