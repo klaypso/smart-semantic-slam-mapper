@@ -178,4 +178,11 @@ vector<int> VisualOdometryStereo::getInlier(std::vector<pmatch>& quadmatches,vec
 
 
 
-void VisualOd
+void VisualOdometryStereo::getInOutMatches(std::vector<pmatch>& quadmatches, vector<int>& inliers)
+{
+  int numMatched = quadmatches.size();
+
+  quadmatches_inlier.clear();
+  quadmatches_outlier.clear();
+
+  for(int i = 0; i < numMatched; i++
