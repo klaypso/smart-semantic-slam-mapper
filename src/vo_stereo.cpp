@@ -217,4 +217,13 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
   cv::Mat B(6,1,CV_64F);
   cv::Mat X(6,1,CV_64F);
 
-  // fill matrices A
+  // fill matrices A and B
+  for (int m=0; m<6; m++) {
+    for (int n=0; n<6; n++) {
+      double a = 0;
+      for (int i=0; i<4*(int)active.size(); i++) {
+        a += J[i*6+m]*J[i*6+n];
+      }
+      A.at<double>(m,n)=a;
+    }
+    double b
