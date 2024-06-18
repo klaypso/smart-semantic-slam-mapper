@@ -209,4 +209,12 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
     return FAILED;
 
   // extract observations and compute predictions
-  computeObservations(quadmatches,active)
+  computeObservations(quadmatches,active);
+  computeResidualsAndJacobian(tr,active);
+
+  // init, solve linear function A*X = B
+  cv::Mat A(6,6,CV_64F);
+  cv::Mat B(6,1,CV_64F);
+  cv::Mat X(6,1,CV_64F);
+
+  // fill matrices A
