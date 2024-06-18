@@ -226,4 +226,12 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
       }
       A.at<double>(m,n)=a;
     }
-    double b
+    double b = 0;
+    for (int i=0; i<4*(int)active.size(); i++) {
+      b += J[i*6+m]*(p_residual[i]);
+    }
+    B.at<double>(m,0)=b;
+  }
+
+  // perform elimination
+  if(cv::solve(A,B,X,DECOMP_LU)) //solve the li
