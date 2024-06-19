@@ -234,4 +234,13 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
   }
 
   // perform elimination
-  if(cv::solve(A,B,X,DECOMP_LU)) //solve the li
+  if(cv::solve(A,B,X,DECOMP_LU)) //solve the linear system A*X=B
+  {
+      bool converged = true;
+      for(int m = 0; m<6; m++)
+      {
+          tr[m] += step_size*X.at<double>(m,0);
+          if(fabs(X.at<double>(m,0))>eps)
+              converged = false;
+      }
+    
