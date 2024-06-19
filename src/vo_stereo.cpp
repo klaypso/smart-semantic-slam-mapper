@@ -243,4 +243,19 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
           if(fabs(X.at<double>(m,0))>eps)
               converged = false;
       }
-    
+      if(converged)
+          return CONVERGED;
+      else
+          return UPDATED;
+
+  }
+  else
+  {
+      return FAILED;
+  }
+
+}
+
+
+
+void VisualOdometryStereo::computeObservations(std::vector<pmatch>& quadmatches,vecto
