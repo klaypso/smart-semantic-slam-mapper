@@ -258,4 +258,10 @@ VisualOdometryStereo::result VisualOdometryStereo::updateParameters(std::vector<
 
 
 
-void VisualOdometryStereo::computeObservations(std::vector<pmatch>& quadmatches,vecto
+void VisualOdometryStereo::computeObservations(std::vector<pmatch>& quadmatches,vector<int> &active) {
+
+  // set all observations
+  for (int i=0; i<(int)active.size(); i++) {
+    p_observe[4*i+0] = quadmatches[active[i]].u1c; // u1
+    p_observe[4*i+1] = quadmatches[active[i]].v1c; // v1
+    p_obser
