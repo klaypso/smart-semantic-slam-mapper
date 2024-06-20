@@ -264,4 +264,14 @@ void VisualOdometryStereo::computeObservations(std::vector<pmatch>& quadmatches,
   for (int i=0; i<(int)active.size(); i++) {
     p_observe[4*i+0] = quadmatches[active[i]].u1c; // u1
     p_observe[4*i+1] = quadmatches[active[i]].v1c; // v1
-    p_obser
+    p_observe[4*i+2] = quadmatches[active[i]].u2c; // u2
+    p_observe[4*i+3] = quadmatches[active[i]].v2c; // v2
+  }
+}
+
+
+
+
+void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector<int> &active) {
+
+  // extract 
