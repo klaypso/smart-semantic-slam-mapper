@@ -274,4 +274,9 @@ void VisualOdometryStereo::computeObservations(std::vector<pmatch>& quadmatches,
 
 void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector<int> &active) {
 
-  // extract 
+  // extract motion parameters
+  double rx = tr[0]; double ry = tr[1]; double rz = tr[2];
+  double tx = tr[3]; double ty = tr[4]; double tz = tr[5];
+
+  // precompute sine/cosine
+  double sx = sin(rx); 
