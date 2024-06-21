@@ -283,4 +283,7 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
   double cy = cos(ry); double sz = sin(rz); double cz = cos(rz);
 
   // compute rotation matrix and derivatives
-  double r00    = +cy*cz;          double r01    = -cy*sz;          double r02    =
+  double r00    = +cy*cz;          double r01    = -cy*sz;          double r02    = +sy;
+  double r10    = +sx*sy*cz+cx*sz; double r11    = -sx*sy*sz+cx*cz; double r12    = -sx*cy;
+  double r20    = -cx*sy*cz+sx*sz; double r21    = +cx*sy*sz+sx*cz; double r22    = +cx*cy;
+  double rdrx10 = +
