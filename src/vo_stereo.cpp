@@ -290,4 +290,7 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
   double rdrx20 = +sx*sy*cz+cx*sz; double rdrx21 = -sx*sy*sz+cx*cz; double rdrx22 = -sx*cy;
   double rdry00 = -sy*cz;          double rdry01 = +sy*sz;          double rdry02 = +cy;
   double rdry10 = +sx*cy*cz;       double rdry11 = -sx*cy*sz;       double rdry12 = +sx*sy;
-  double rdry20 = -cx*cy*cz;       double rdry21 = +cx*cy
+  double rdry20 = -cx*cy*cz;       double rdry21 = +cx*cy*sz;       double rdry22 = -cx*sy;
+  double rdrz00 = -cy*sz;          double rdrz01 = -cy*cz;
+  double rdrz10 = -sx*sy*sz+cx*cz; double rdrz11 = -sx*sy*cz-cx*sz;
+  double rdrz20 = +cx*sy*sz
