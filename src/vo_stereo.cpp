@@ -303,4 +303,10 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
   // for all observations do
   for (int i=0; i<(int)active.size(); i++) {
 
-   
+    // get 3d point in previous coordinate system
+    X1p = X[active[i]];
+    Y1p = Y[active[i]];
+    Z1p = Z[active[i]];
+
+    // compute 3d point in current left coordinate system
+    X1c = r00*X1p+r01*Y1p+r02*Z1
