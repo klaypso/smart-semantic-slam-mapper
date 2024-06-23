@@ -309,4 +309,11 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
     Z1p = Z[active[i]];
 
     // compute 3d point in current left coordinate system
-    X1c = r00*X1p+r01*Y1p+r02*Z1
+    X1c = r00*X1p+r01*Y1p+r02*Z1p+tx;
+    Y1c = r10*X1p+r11*Y1p+r12*Z1p+ty;
+    Z1c = r20*X1p+r21*Y1p+r22*Z1p+tz;
+    
+    // weighting
+    double weight = 1.0;
+    if (param.reweighting)
+      weight = 1.0/(fabs(p_observe[4*i+0]-param.calib.cu)/fabs
