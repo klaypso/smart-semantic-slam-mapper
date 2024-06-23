@@ -324,4 +324,8 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
     // for all paramters do
     for (int j=0; j<6; j++) {
 
-      // deri
+      // derivatives of 3d pt. in curr. left coordinates wrt. param j
+      switch (j) {
+        case 0: X1cd = 0;
+                Y1cd = rdrx10*X1p+rdrx11*Y1p+rdrx12*Z1p;
+                Z1cd = rdrx20*X1p+rd
