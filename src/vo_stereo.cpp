@@ -293,4 +293,14 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
   double rdry20 = -cx*cy*cz;       double rdry21 = +cx*cy*sz;       double rdry22 = -cx*sy;
   double rdrz00 = -cy*sz;          double rdrz01 = -cy*cz;
   double rdrz10 = -sx*sy*sz+cx*cz; double rdrz11 = -sx*sy*cz-cx*sz;
-  double rdrz20 = +cx*sy*sz
+  double rdrz20 = +cx*sy*sz+sx*cz; double rdrz21 = +cx*sy*cz-sx*sz;
+
+  // loop variables
+  double X1p,Y1p,Z1p;
+  double X1c,Y1c,Z1c,X2c;
+  double X1cd,Y1cd,Z1cd;
+
+  // for all observations do
+  for (int i=0; i<(int)active.size(); i++) {
+
+   
