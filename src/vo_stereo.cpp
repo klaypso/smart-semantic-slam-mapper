@@ -338,4 +338,10 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
                 Y1cd = rdrz10*X1p+rdrz11*Y1p;
                 Z1cd = rdrz20*X1p+rdrz21*Y1p;
                 break;
-      
+        case 3: X1cd = 1; Y1cd = 0; Z1cd = 0; break;
+        case 4: X1cd = 0; Y1cd = 1; Z1cd = 0; break;
+        case 5: X1cd = 0; Y1cd = 0; Z1cd = 1; break;
+      }
+
+      // set jacobian entries (project via K)
+      J[(4*i
