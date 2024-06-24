@@ -332,4 +332,10 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
                 break;
         case 1: X1cd = rdry00*X1p+rdry01*Y1p+rdry02*Z1p;
                 Y1cd = rdry10*X1p+rdry11*Y1p+rdry12*Z1p;
-                Z1cd = rdry20*X1p
+                Z1cd = rdry20*X1p+rdry21*Y1p+rdry22*Z1p;
+                break;
+        case 2: X1cd = rdrz00*X1p+rdrz01*Y1p;
+                Y1cd = rdrz10*X1p+rdrz11*Y1p;
+                Z1cd = rdrz20*X1p+rdrz21*Y1p;
+                break;
+      
