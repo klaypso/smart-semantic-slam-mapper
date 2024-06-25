@@ -344,4 +344,6 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
       }
 
       // set jacobian entries (project via K)
-      J[(4*i
+      J[(4*i+0)*6+j] = weight*param.calib.f*(X1cd*Z1c-X1c*Z1cd)/(Z1c*Z1c); // left u'
+      J[(4*i+1)*6+j] = weight*param.calib.f*(Y1cd*Z1c-Y1c*Z1cd)/(Z1c*Z1c); // left v'
+      J[(4*i+2)*6+j] = weight*para
