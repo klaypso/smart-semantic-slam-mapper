@@ -351,4 +351,7 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
     }
 
     // set prediction (project via K)
-    p_predict[4*i+0] = param.calib.f*X
+    p_predict[4*i+0] = param.calib.f*X1c/Z1c+param.calib.cu; // left u
+    p_predict[4*i+1] = param.calib.f*Y1c/Z1c+param.calib.cv; // left v
+    p_predict[4*i+2] = param.calib.f*X2c/Z1c+param.calib.cu; // right u
+    p_predict[4*i+3] = pa
