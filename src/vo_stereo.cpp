@@ -358,4 +358,9 @@ void VisualOdometryStereo::computeResidualsAndJacobian(vector<double> &tr,vector
     
     // set residuals
     p_residual[4*i+0] = weight*(p_observe[4*i+0]-p_predict[4*i+0]);
-    p_residual[4*i+1] = weight*(p_observe[4*i+1]-p_predict[4*i
+    p_residual[4*i+1] = weight*(p_observe[4*i+1]-p_predict[4*i+1]);
+    p_residual[4*i+2] = weight*(p_observe[4*i+2]-p_predict[4*i+2]);
+    p_residual[4*i+3] = weight*(p_observe[4*i+3]-p_predict[4*i+3]);
+  }
+}
+
